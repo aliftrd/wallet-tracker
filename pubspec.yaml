@@ -1,0 +1,53 @@
+name: waltrack
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Routing
+  go_router: ^17.0.0
+
+  # Model
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.9.0
+  
+  # Logging
+  logger: ^2.6.2
+  dartz: ^0.10.1
+
+  # Media
+  flutter_svg: ^2.2.2
+
+  # Depedency Injection
+  get_it: ^9.0.5
+
+  # UI
+  figma_squircle: ^0.6.3
+
+  # Utils
+  cached_network_image: ^3.4.1
+  page_transition: ^2.2.1
+  flutter_screenutil: ^5.9.3
+  path_provider: ^2.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  change_app_package_name: ^1.5.0
+  freezed: ^3.2.3
+  build_runner: ^2.10.1
+  json_serializable: ^6.11.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
