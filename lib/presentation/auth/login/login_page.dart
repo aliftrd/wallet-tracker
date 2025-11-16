@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waltrack/applications/constant/assets.dart';
+import 'package:waltrack/applications/constant/constants.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/extension/app_theme_extension.dart';
 import 'package:waltrack/applications/extension/string_extension.dart';
@@ -58,10 +59,7 @@ class _LoginPageState extends State<LoginPage> {
               context.pushReplacement(HomePage.path);
             } else if (state.isFailure) {
               if (state.errors == null || state.errors!.isEmpty) {
-                Toast.showError(
-                  context: context,
-                  message: state.message ?? 'Login gagal. Silakan coba lagi.',
-                );
+                Toast.showError(context: context, message: state.message!);
               }
             }
           },
@@ -80,14 +78,14 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Assets.illustrationLogin.toSvg(width: double.infinity, height: 200),
                       Text(
-                        'Masuk ke WaltrackAI',
+                        Constants.LOGIN_TITLE,
                         textAlign: TextAlign.center,
                         style: context.textTheme.headlineLarge?.copyWith(
                           fontSize: FontSize.s28,
                         ),
                       ),
                       Text(
-                        'Kelola keuangan dengan lebih cerdas dan cepat.',
+                        Constants.LOGIN_DESCRIPTION,
                         textAlign: TextAlign.center,
                         style: context.textTheme.bodyLarge,
                       ),
@@ -101,18 +99,18 @@ class _LoginPageState extends State<LoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           CustomLabeledTextInput(
-                            label: 'Email',
-                            hintText: 'Masukkan email anda',
+                            label: Constants.LOGIN_EMAIL_LABEL,
+                            hintText: Constants.LOGIN_EMAIL_HINT,
                             isRequired: true,
                             controller: emailController,
-                            errorText: state.getErrorText('email'),
+                            errorText: state.getErrorText(Constants.LOGIN_EMAIL_KEY),
                           ),
                           CustomLabeledTextInput(
-                            label: 'Password',
-                            hintText: 'Masukkan password anda',
+                            label: Constants.LOGIN_PASSWORD_LABEL,
+                            hintText: Constants.LOGIN_PASSWORD_HINT,
                             isRequired: true,
                             controller: passwordController,
-                            errorText: state.getErrorText('password'),
+                            errorText: state.getErrorText(Constants.LOGIN_PASSWORD_KEY),
                             obscureText: !state.isPasswordVisible,
                             suffixIcon: InkWell(
                               splashColor: Colors.transparent,
@@ -122,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           Text(
-                            "Lupa password?",
+                            Constants.LOGIN_FORGOT_PASSWORD_ACTION,
                             textAlign: TextAlign.end,
                             style: context.textTheme.bodySmall?.copyWith(color: context.color.primary),
                           ),
@@ -134,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                     bloc: _loginBloc,
                     builder: (context, state) {
                       return CustomButtonPrimary(
-                        text: 'Login',
+                        text: Constants.LOGIN_ACTION,
                         isLoading: state.isLoading,
                         onPress: () {
                           if (_formKey.currentState!.validate()) {
@@ -147,9 +145,9 @@ class _LoginPageState extends State<LoginPage> {
                   RichText(
                     text: TextSpan(
                       children: [
-                        TextSpan(text: "Belum punya akun? ", style: context.textTheme.bodySmall),
+                        TextSpan(text: Constants.LOGIN_ACTION_REGISTER_LABEL, style: context.textTheme.bodySmall),
                         TextSpan(
-                          text: "Daftar sekarang!",
+                          text: Constants.LOGIN_ACTION_REGISTER_ACTION,
                           recognizer: TapGestureRecognizer()..onTap = () => context.pushNamed(RegisterPage.path),
                           style: context.textTheme.bodySmall?.copyWith(color: context.color.primary),
                         ),
