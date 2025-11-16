@@ -16,7 +16,7 @@ class Avatar extends StatelessWidget {
     return CircleAvatar(
       radius: radius,
       child: CachedNetworkImage(
-        imageUrl: "https://ui-avatars.com/api/?name=alif",
+        imageUrl: photoUrl,
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(radius),

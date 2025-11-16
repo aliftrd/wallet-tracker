@@ -6,7 +6,7 @@ class Endpoints {
   /// [AUTHENTICATION]
   static String get login => '$_baseUrl/auth/login';
   static String get register => '$_baseUrl/auth/register';
-  static String get logout => '$_baseUrl/auth/logout';
+  static String get logout => '$_baseUrl/logout';
 
   /// [DASHBOARD]
   static String get dashboard => '$_baseUrl/dashboard';

@@ -12,6 +12,31 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._authLocalDatasource, this._authRemoteDatasource);
 
   @override
+  Stream<Either<Failure, UserEntity?>> watchAuthStatus() async* {
+    Future<Either<Failure, UserEntity?>> getUserOrNull() async {
+      final token = _authLocalDatasource.getToken();
+      if (token == null) return right(null);
+      final result = await me();
+      return result.fold(
+        (failure) => left(failure),
+        (user) => right(user),
+      );
+    }
+
+    yield await getUserOrNull();
+
+    await for (final _ in _authLocalDatasource.watchToken()) {
+      yield await getUserOrNull();
+    }
+  }
+
+  @override
+  Future<bool> isAuthenticated() async {
+    final token = _authLocalDatasource.getToken();
+    return token != null;
+  }
+
+  @override
   Future<Either<Failure, UserEntity>> login(String email, String password) async {
     final response = await _authRemoteDatasource.login(email, password);
     return response.fold(
@@ -31,8 +56,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> logout() async {
-    // return await authLocalDatasource.logout();
-    return right(null);
+  Future<Either<Failure, UserEntity>> me() async {
+    final response = await _authRemoteDatasource.me();
+    return response.fold(
+      (failure) => Left(failure),
+      (data) => right(data.toEntity()),
+    );
+  }
+
+  @override
+  Future<void> logout() async {
+    _authRemoteDatasource.logout();
+    _authLocalDatasource.deleteToken();
   }
 }

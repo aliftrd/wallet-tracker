@@ -3,7 +3,10 @@ import 'package:waltrack/domain/entity/user/user_entity.dart';
 import 'package:waltrack/infrastructure/core/error_handler.dart';
 
 abstract class AuthRepository {
+  Future<bool> isAuthenticated();
+  Stream<Either<Failure, UserEntity?>> watchAuthStatus();
   Future<Either<Failure, UserEntity>> login(String email, String password);
   Future<Either<Failure, UserEntity>> register(String name, String email, String password);
-  Future<Either<Failure, void>> logout();
+  Future<Either<Failure, UserEntity>> me();
+  Future<void> logout();
 }

@@ -16,4 +16,8 @@ class AuthRemoteDatasource {
       'password': password,
     });
   }
+
+  Future<Either<Failure, UserModel>> me() async => _apiClient.me.get(Endpoints.profile);
+
+  Future<Either<Failure, void>> logout() async => _apiClient.logout.delete(Endpoints.logout);
 }

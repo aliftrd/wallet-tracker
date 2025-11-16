@@ -11,9 +11,9 @@ import 'package:waltrack/applications/extension/form_state_extension.dart';
 import 'package:waltrack/presentation/auth/login/bloc/login_form_bloc.dart';
 import 'package:waltrack/presentation/auth/register/register_page.dart';
 import 'package:waltrack/presentation/home/home_page.dart';
-import 'package:waltrack/presentation/shared/button/custom_button_primary.dart';
-import 'package:waltrack/presentation/shared/input/custom_labeled_textinput.dart';
-import 'package:waltrack/presentation/shared/toast/toastification.dart';
+import 'package:waltrack/presentation/shared/widget/button/custom_button_primary.dart';
+import 'package:waltrack/presentation/shared/widget/input/custom_labeled_textinput.dart';
+import 'package:waltrack/presentation/shared/widget/toast/toastification.dart';
 
 class LoginPage extends StatefulWidget {
   static const String path = '/login';

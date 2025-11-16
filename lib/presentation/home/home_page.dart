@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:figma_squircle/figma_squircle.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:waltrack/applications/constant/constants.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/extension/app_theme_extension.dart';
-import 'package:waltrack/presentation/shared/avatar.dart';
+import 'package:waltrack/presentation/shared/bloc/auth/auth_bloc.dart';
+import 'package:waltrack/presentation/shared/widget/avatar.dart';
 import 'package:waltrack/presentation/home/widget/overview_card.dart';
-import 'package:waltrack/presentation/shared/transaction_item.dart';
+import 'package:waltrack/presentation/shared/widget/transaction_item.dart';
 import 'package:waltrack/presentation/transaction_page.dart';
 import 'package:waltrack/presentation/wallet_page.dart';
 
@@ -22,33 +25,31 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: context.color.surface,
-        flexibleSpace: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: Sizes.s16),
-            child: Row(
-              spacing: Sizes.s10,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Avatar(radius: Sizes.s24, photoUrl: 'https://ui-avatars.com/api/?name=alif'),
-                Column(
-                  spacing: Sizes.s4,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+        flexibleSpace: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            return SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: Sizes.s16),
+                child: Row(
+                  spacing: Sizes.s10,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      'Hi! Alif.',
-                      style: context.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Welcome to Waltrack AI',
-                      style: context.textTheme.bodySmall,
+                    Avatar(radius: Sizes.s24, photoUrl: state.user!.avatar),
+                    Column(
+                      spacing: Sizes.s4,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(Constants.homeGreeting(state.user!.name), style: context.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+                        Text(Constants.HOME_WELCOME_MESSAGE, style: context.textTheme.bodySmall),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
       body: SingleChildScrollView(

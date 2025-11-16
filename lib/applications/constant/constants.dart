@@ -23,6 +23,10 @@ class Constants {
   static const String LOGIN_ACTION_REGISTER_LABEL = "Belum punya akun? ";
   static const String LOGIN_ACTION_REGISTER_ACTION = "Daftar sekarang!";
 
+  /// [Home]
+  static String homeGreeting(String name) => 'Hi! $name.';
+  static const String HOME_WELCOME_MESSAGE = 'Welcome to Waltrack AI';
+
   /// [Validation]
   static String validatorRequired(String field) => 'This ${field.toLowerCase()} is required';
 }
