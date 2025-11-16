@@ -24,7 +24,7 @@ class OverviewCard extends StatelessWidget {
       decoration: ShapeDecoration(
         image: const DecorationImage(
           image: AssetImage(Assets.imageOverviewMesh),
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.cover,
         ),
         shape: SmoothRectangleBorder(
           borderRadius: SmoothBorderRadius(
@@ -99,7 +99,7 @@ class OverviewCard extends StatelessWidget {
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );

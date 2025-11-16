@@ -56,7 +56,7 @@ class AppTheme {
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: _textStyle.body.copyWith(color: _colors.disabled),
+        hintStyle: _textStyle.bodyL.copyWith(color: _colors.disabled),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(Sizes.s16),
           borderSide: BorderSide(
@@ -86,7 +86,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(Sizes.s16),
           borderSide: BorderSide(color: _colors.danger),
         ),
-        errorStyle: _textStyle.bodySmall.copyWith(color: _colors.danger),
+        errorStyle: _textStyle.bodyL.copyWith(color: _colors.danger),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -100,6 +100,7 @@ class AppTheme {
           disabledBackgroundColor: _colors.disabled,
           disabledForegroundColor: _colors.containerDark,
           minimumSize: Size(double.infinity, Sizes.s50),
+          textStyle: _textStyle.bodyL,
         ),
       ),
       iconButtonTheme: IconButtonThemeData(
@@ -123,7 +124,7 @@ class AppTheme {
         titleSmall: _textStyle.labelL,
         bodyLarge: _textStyle.bodyL,
         bodyMedium: _textStyle.body,
-        bodySmall: _textStyle.bodySmall,
+        bodySmall: _textStyle.bodyS,
         labelLarge: _textStyle.labelL,
         labelMedium: _textStyle.labelM,
         labelSmall: _textStyle.labelS,

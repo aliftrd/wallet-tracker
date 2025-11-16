@@ -86,7 +86,7 @@ class CustomTextStyle {
     leadingDistribution: TextLeadingDistribution.even,
     letterSpacing: -1,
   );
-  TextStyle bodySmall = TextStyle(
+  TextStyle bodyS = TextStyle(
     fontSize: FontSize.s14,
     fontWeight: FontWeight.w400,
     leadingDistribution: TextLeadingDistribution.even,

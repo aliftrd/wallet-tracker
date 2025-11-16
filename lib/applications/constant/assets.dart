@@ -15,4 +15,5 @@ class Assets {
   static const String iconIncome = "$iconDir/income.svg";
 
   static const String imageOverviewMesh = "$imageDir/overview-mesh.png";
+  static const String illustrationLogin = "$imageDir/login-illustration.svg";
 }

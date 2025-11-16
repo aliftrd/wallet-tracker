@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:waltrack/presentation/auth/login/login_page.dart';
+import 'package:waltrack/presentation/auth/register/register_page.dart';
 import 'package:waltrack/presentation/category_page.dart';
 import 'package:waltrack/presentation/home/home_page.dart';
 import 'package:waltrack/presentation/profile_page.dart';
@@ -7,6 +9,7 @@ import 'package:waltrack/presentation/switcher_page.dart';
 import 'package:waltrack/presentation/splash_page.dart';
 import 'package:waltrack/presentation/transaction_page.dart';
 import 'package:waltrack/presentation/wallet_page.dart';
+import 'package:waltrack/presentation/welcome_page.dart';
 
 class AppRouter {
   AppRouter._();
@@ -29,6 +32,21 @@ class AppRouter {
       name: SplashPage.path,
       path: SplashPage.path,
       builder: (context, state) => const SplashPage(),
+    ),
+    GoRoute(
+      name: WelcomePage.path,
+      path: WelcomePage.path,
+      builder: (context, state) => const WelcomePage(),
+    ),
+    GoRoute(
+      name: LoginPage.path,
+      path: LoginPage.path,
+      builder: (context, state) => const LoginPage(),
+    ),
+    GoRoute(
+      name: RegisterPage.path,
+      path: RegisterPage.path,
+      builder: (context, state) => const RegisterPage(),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) => SwitcherPage(navigationShell: navigationShell),

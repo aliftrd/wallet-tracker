@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: context.color.surface,
         flexibleSpace: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(Sizes.s16),
+            padding: EdgeInsets.symmetric(horizontal: Sizes.s16),
             child: Row(
               spacing: Sizes.s10,
               crossAxisAlignment: CrossAxisAlignment.center,

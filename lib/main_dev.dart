@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/widgets.dart';
 import 'package:waltrack/bootstrap.dart';
 import 'package:waltrack/applications/config/flavors.dart';
 import 'package:waltrack/main_page.dart';
@@ -12,10 +13,11 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   Flavors.create(
     flavor: Flavor.DEVELOPMENT,
-    baseUrl: "https://dev-waltrack.aliftrd.my.id/api",
+    baseUrl: "https://dev-waltrack.aliftrd.my.id/api/v1",
   );
   await di.init();
   bootstrap(() => const MainPage());

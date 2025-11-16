@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:waltrack/presentation/home/home_page.dart';
+import 'package:waltrack/presentation/auth/login/login_page.dart';
 
 class SplashPage extends StatefulWidget {
   static const String path = '/';
@@ -18,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       if (!mounted) return;
-      context.pushReplacement(HomePage.path);
+      context.pushReplacement(LoginPage.path);
     });
   }
 

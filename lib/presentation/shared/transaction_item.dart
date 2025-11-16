@@ -42,27 +42,30 @@ class TransactionItem extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            spacing: Sizes.s4,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                category,
-                style: context.textTheme.bodyMedium,
-              ),
-              Text(
-                wallet,
-                style: context.textTheme.bodySmall?.copyWith(fontSize: FontSize.s13),
-              ),
-              Text(
-                date,
-                style: context.textTheme.bodySmall?.copyWith(
-                  fontSize: FontSize.s12,
+          Expanded(
+            child: Column(
+              spacing: Sizes.s4,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  category,
+                  style: context.textTheme.bodyMedium,
                 ),
-              ),
-            ],
+                Text(
+                  wallet,
+                  style: context.textTheme.bodySmall?.copyWith(fontSize: FontSize.s13),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  date,
+                  style: context.textTheme.bodySmall?.copyWith(
+                    fontSize: FontSize.s12,
+                  ),
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
           Column(
             spacing: Sizes.s4,
             crossAxisAlignment: CrossAxisAlignment.end,

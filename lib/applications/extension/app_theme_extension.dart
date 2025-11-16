@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
+import 'package:waltrack/applications/theme/custom_color.dart';
+import 'package:waltrack/applications/theme/custom_text_style.dart';
 
 extension BuildContextExtensions on BuildContext {
   ThemeData get theme => Theme.of(this);
@@ -9,7 +11,9 @@ extension BuildContextExtensions on BuildContext {
 
   // Colors
   ColorScheme get color => theme.colorScheme;
+  Color get blackOrWhite => CustomColor().blackWhite;
 
   // Text Style
   TextTheme get textTheme => theme.textTheme;
+  CustomTextStyle get customTextStyle => CustomTextStyle();
 }
