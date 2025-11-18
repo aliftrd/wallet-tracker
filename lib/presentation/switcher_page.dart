@@ -23,38 +23,44 @@ class SwitcherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          navigationShell,
-          BottomNavigationBar(
-            items: [
-              BottomNavigationBarItem(
-                icon: navigationShell.currentIndex == 0 ? Assets.iconHomeFilled.toSvg() : Assets.iconHome.toSvg(),
-                label: 'Home',
-                onTap: () => _goBranch(0),
-                isSelected: navigationShell.currentIndex == 0,
-              ),
-              BottomNavigationBarItem(
-                icon: navigationShell.currentIndex == 1 ? Assets.iconWalletFilled.toSvg() : Assets.iconWallet.toSvg(),
-                label: 'Wallet',
-                onTap: () => _goBranch(1),
-                isSelected: navigationShell.currentIndex == 1,
-              ),
-              BottomNavigationBarItem(
-                icon: navigationShell.currentIndex == 2 ? Assets.iconTransactionFilled.toSvg() : Assets.iconTransaction.toSvg(),
-                label: 'Transaction',
-                onTap: () => _goBranch(2),
-                isSelected: navigationShell.currentIndex == 2,
-              ),
-              BottomNavigationBarItem(
-                icon: navigationShell.currentIndex == 4 ? Assets.iconProfileFilled.toSvg() : Assets.iconProfile.toSvg(),
-                label: 'Profile',
-                onTap: () => _goBranch(4),
-                isSelected: navigationShell.currentIndex == 4,
-              ),
-            ],
-          ),
-        ],
+      body: SafeArea(
+        child: Stack(
+          children: [
+            navigationShell,
+            BottomNavigationBar(
+              items: [
+                BottomNavigationBarItem(
+                  icon: Assets.iconHome.toSvg(),
+                  activeIcon: Assets.iconHomeFilled.toSvg(),
+                  label: 'Home',
+                  onTap: () => _goBranch(0),
+                  isSelected: navigationShell.currentIndex == 0,
+                ),
+                BottomNavigationBarItem(
+                  icon: Assets.iconWallet.toSvg(),
+                  activeIcon: Assets.iconWalletFilled.toSvg(),
+                  label: 'Wallet',
+                  onTap: () => _goBranch(1),
+                  isSelected: navigationShell.currentIndex == 1,
+                ),
+                BottomNavigationBarItem(
+                  icon: Assets.iconTransaction.toSvg(),
+                  activeIcon: Assets.iconTransactionFilled.toSvg(),
+                  label: 'Transaction',
+                  onTap: () => _goBranch(2),
+                  isSelected: navigationShell.currentIndex == 2,
+                ),
+                BottomNavigationBarItem(
+                  icon: Assets.iconProfile.toSvg(),
+                  activeIcon: Assets.iconProfileFilled.toSvg(),
+                  label: 'Profile',
+                  onTap: () => _goBranch(4),
+                  isSelected: navigationShell.currentIndex == 4,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -73,6 +79,7 @@ class BottomNavigationBar extends StatelessWidget {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
+          margin: EdgeInsets.symmetric(vertical: Sizes.s16),
           padding: EdgeInsets.symmetric(
             horizontal: context.defaultPadding,
             vertical: context.defaultPadding - 6,
@@ -92,7 +99,7 @@ class BottomNavigationBar extends StatelessWidget {
             spacing: 8,
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: items.map((item) => item.build(context)).toList(),
+            children: items,
           ),
         ),
       ),
@@ -102,6 +109,7 @@ class BottomNavigationBar extends StatelessWidget {
 
 class BottomNavigationBarItem extends StatelessWidget {
   final Widget icon;
+  final Widget activeIcon;
   final String label;
   final VoidCallback onTap;
   final bool isSelected;
@@ -109,6 +117,7 @@ class BottomNavigationBarItem extends StatelessWidget {
   const BottomNavigationBarItem({
     super.key,
     required this.icon,
+    required this.activeIcon,
     required this.label,
     required this.onTap,
     required this.isSelected,
@@ -141,7 +150,7 @@ class BottomNavigationBarItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            icon,
+            isSelected ? activeIcon : icon,
             AnimatedSize(
               duration: const Duration(milliseconds: 200),
               curve: Curves.easeInOut,
