@@ -11,7 +11,6 @@ part of 'user_entity.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-
 /// @nodoc
 mixin _$UserEntity {
 
@@ -22,8 +21,6 @@ mixin _$UserEntity {
 @pragma('vm:prefer-inline')
 $UserEntityCopyWith<UserEntity> get copyWith => _$UserEntityCopyWithImpl<UserEntity>(this as UserEntity, _$identity);
 
-  /// Serializes this UserEntity to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
@@ -31,7 +28,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is UserEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
 int get hashCode => Object.hash(runtimeType,id,name,email,avatar);
 
@@ -209,11 +206,11 @@ return $default(_that.id,_that.name,_that.email,_that.avatar);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
+
 
 class _UserEntity extends UserEntity {
   const _UserEntity({required this.id, required this.name, required this.email, required this.avatar}): super._();
-  factory _UserEntity.fromJson(Map<String, dynamic> json) => _$UserEntityFromJson(json);
+  
 
 @override final  int id;
 @override final  String name;
@@ -226,17 +223,14 @@ class _UserEntity extends UserEntity {
 @pragma('vm:prefer-inline')
 _$UserEntityCopyWith<_UserEntity> get copyWith => __$UserEntityCopyWithImpl<_UserEntity>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$UserEntityToJson(this, );
-}
+
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.avatar, avatar) || other.avatar == avatar));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
 int get hashCode => Object.hash(runtimeType,id,name,email,avatar);
 

@@ -24,4 +24,19 @@ extension StringExtension on String {
   }) {
     return Image.asset(this, width: width, height: height, fit: fit);
   }
+
+  Color toColor() {
+    String hexColor = replaceAll('#', '');
+    if (hexColor.length == 6) {
+      hexColor = 'FF$hexColor';
+    }
+
+    return Color(int.parse(hexColor, radix: 16));
+  }
+
+  IconData toIconData() {
+    int codePoint = int.parse(this, radix: 16);
+
+    return IconData(codePoint, fontFamily: 'MaterialIcons');
+  }
 }

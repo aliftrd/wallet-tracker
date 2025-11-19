@@ -10,7 +10,7 @@ import 'package:waltrack/presentation/shared/widget/avatar.dart';
 import 'package:waltrack/presentation/home/widget/overview_card.dart';
 import 'package:waltrack/presentation/shared/widget/transaction_item.dart';
 import 'package:waltrack/presentation/transaction_page.dart';
-import 'package:waltrack/presentation/wallet_page.dart';
+import 'package:waltrack/presentation/wallet/list/wallet_page.dart';
 
 class HomePage extends StatelessWidget {
   static const String path = '/home';

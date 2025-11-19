@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:figma_squircle/figma_squircle.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/theme/custom_color.dart';
 import 'package:waltrack/applications/theme/custom_text_style.dart';
@@ -30,8 +31,11 @@ class AppTheme {
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: _colors.primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+        shape: SmoothRectangleBorder(
+          borderRadius: SmoothBorderRadius(
+            cornerRadius: 16,
+            cornerSmoothing: 1,
+          ),
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
@@ -117,7 +121,7 @@ class AppTheme {
         displayMedium: _textStyle.displayM,
         displaySmall: _textStyle.displayS,
         headlineLarge: _textStyle.headingXL,
-        headlineMedium: _textStyle.headingL,
+        headlineMedium: _textStyle.headingM,
         headlineSmall: _textStyle.headingS,
         titleLarge: _textStyle.subHeading,
         titleMedium: _textStyle.headingM,

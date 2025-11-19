@@ -16,4 +16,5 @@ class Assets {
 
   static const String imageOverviewMesh = "$imageDir/overview-mesh.png";
   static const String illustrationLogin = "$imageDir/login-illustration.svg";
+  static const String illustrationNotFound = "$imageDir/not-found-illustration.svg";
 }

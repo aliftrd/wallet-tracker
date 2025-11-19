@@ -27,6 +27,15 @@ class Constants {
   static String homeGreeting(String name) => 'Hi! $name.';
   static const String HOME_WELCOME_MESSAGE = 'Welcome to Waltrack AI';
 
+  /// [Wallet]
+  static const String WALLET_TITLE = 'Wallet';
+  static const String WALLET_DESCRIPTION = 'Kelola wallet anda dengan lebih mudah dan cepat.';
+
+  /// [Error]
+  static const String ERROR_TITLE = 'Ups! Ada kendala nih.';
+  static const String ERROR_EMPTY_DESCRIPTION = 'Tidak ada data yang ditemukan.';
+  static const String ERROR_NETWORK_DESCRIPTION = 'Kami mengalami kesulitan memuat data.\nCoba beberapa saat lagi.';
+
   /// [Validation]
   static String validatorRequired(String field) => 'This ${field.toLowerCase()} is required';
 }

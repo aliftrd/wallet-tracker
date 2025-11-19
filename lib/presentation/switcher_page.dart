@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waltrack/applications/constant/assets.dart';
@@ -20,10 +22,14 @@ class SwitcherPage extends StatelessWidget {
     );
   }
 
+  bool get isAndroid => Platform.isAndroid;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
+        bottom: isAndroid ? true : false,
         child: Stack(
           children: [
             navigationShell,
@@ -73,13 +79,15 @@ class BottomNavigationBar extends StatelessWidget {
     required this.items,
   });
 
+  bool get isAndroid => Platform.isAndroid;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: Sizes.s16),
+          margin: EdgeInsets.symmetric(vertical: isAndroid ? Sizes.s16 : Sizes.s0),
           padding: EdgeInsets.symmetric(
             horizontal: context.defaultPadding,
             vertical: context.defaultPadding - 6,
@@ -128,7 +136,7 @@ class BottomNavigationBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: isSelected ? null : onTap,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: Sizes.s8, horizontal: Sizes.s12),
         decoration: BoxDecoration(

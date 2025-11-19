@@ -8,7 +8,7 @@ import 'package:waltrack/presentation/profile_page.dart';
 import 'package:waltrack/presentation/switcher_page.dart';
 import 'package:waltrack/presentation/splash_page.dart';
 import 'package:waltrack/presentation/transaction_page.dart';
-import 'package:waltrack/presentation/wallet_page.dart';
+import 'package:waltrack/presentation/wallet/list/wallet_page.dart';
 import 'package:waltrack/presentation/welcome_page.dart';
 
 class AppRouter {
@@ -65,7 +65,7 @@ class AppRouter {
             GoRoute(
               name: WalletPage.path,
               path: WalletPage.path,
-              builder: (context, state) => const WalletPage(),
+              builder: (context, state) => WalletPage(),
             ),
           ],
         ),
