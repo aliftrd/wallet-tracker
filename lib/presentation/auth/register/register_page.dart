@@ -83,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     //   },
                     // ),
                     Text(
-                      "Lupa password?",
+                      'Lupa password?',
                       textAlign: TextAlign.end,
                       style: context.textTheme.bodySmall?.copyWith(color: context.color.primary),
                     ),
@@ -101,9 +101,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 RichText(
                   text: TextSpan(
                     children: [
-                      TextSpan(text: "Sudah punya akun? ", style: context.textTheme.bodySmall),
+                      TextSpan(text: 'Sudah punya akun? ', style: context.textTheme.bodySmall),
                       TextSpan(
-                        text: "Masuk!",
+                        text: 'Masuk!',
                         recognizer: TapGestureRecognizer()..onTap = () => context.pop(),
                         style: context.textTheme.bodySmall?.copyWith(color: context.color.primary),
                       ),

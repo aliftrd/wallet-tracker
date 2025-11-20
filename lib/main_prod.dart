@@ -16,7 +16,7 @@ void main() {
   HttpOverrides.global = MyHttpOverrides();
   Flavors.create(
     flavor: Flavor.PRODUCTION,
-    baseUrl: "https://waltrack.aliftrd.my.id/api",
+    baseUrl: 'https://waltrack.aliftrd.my.id/api',
   );
   bootstrap(() => const MainPage());
 }

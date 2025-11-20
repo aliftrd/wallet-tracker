@@ -46,7 +46,7 @@ class _WalletPageState extends State<WalletPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Wallet", style: context.textTheme.headlineMedium),
+        title: Text('Wallet', style: context.textTheme.headlineMedium),
         centerTitle: true,
         backgroundColor: context.color.primaryContainer,
         scrolledUnderElevation: 0,

@@ -15,7 +15,7 @@ class TransactionPage extends StatelessWidget {
         scrolledUnderElevation: 0,
         elevation: 0,
         title: Text(
-          "Transaction",
+          'Transaction',
           style: context.textTheme.headlineLarge?.copyWith(
             color: context.color.onPrimary,
           ),

@@ -22,7 +22,7 @@ class LoginFormBloc extends Bloc<LoginFormEvent, LoginFormState> {
     emit(
       state.copyWith(
         form: state.form.copyWith(email: event.email),
-        message: "Berhasil",
+        message: 'Berhasil',
       ),
     );
   }

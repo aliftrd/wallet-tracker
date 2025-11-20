@@ -17,7 +17,7 @@ Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
   Flavors.create(
     flavor: Flavor.DEVELOPMENT,
-    baseUrl: "https://dev-waltrack.aliftrd.my.id/api/v1",
+    baseUrl: 'https://dev-waltrack.aliftrd.my.id/api/v1',
   );
   await di.init();
   bootstrap(() => const MainPage());

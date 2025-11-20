@@ -18,10 +18,16 @@ class Constants {
   static const String LOGIN_PASSWORD_KEY = 'password';
   static const String LOGIN_PASSWORD_LABEL = 'Password';
   static const String LOGIN_PASSWORD_HINT = 'Masukkan password anda';
-  static const String LOGIN_FORGOT_PASSWORD_ACTION = "Lupa password?";
+  static const String LOGIN_FORGOT_PASSWORD_ACTION = 'Lupa password?';
   static const String LOGIN_ACTION = 'Masuk';
-  static const String LOGIN_ACTION_REGISTER_LABEL = "Belum punya akun? ";
-  static const String LOGIN_ACTION_REGISTER_ACTION = "Daftar sekarang!";
+  static const String LOGIN_ACTION_REGISTER_LABEL = 'Belum punya akun? ';
+  static const String LOGIN_ACTION_REGISTER_ACTION = 'Daftar sekarang!';
+
+  /// [Switcher]
+  static const String SWITCHER_HOME_LABEL = 'Beranda';
+  static const String SWITCHER_WALLET_LABEL = 'Dompet';
+  static const String SWITCHER_TRANSACTION_LABEL = 'Transaksi';
+  static const String SWITCHER_PROFILE_LABEL = 'Profil';
 
   /// [Home]
   static String homeGreeting(String name) => 'Hi! $name.';
@@ -36,6 +42,30 @@ class Constants {
   static const String ERROR_EMPTY_DESCRIPTION = 'Tidak ada data yang ditemukan.';
   static const String ERROR_NETWORK_DESCRIPTION = 'Kami mengalami kesulitan memuat data.\nCoba beberapa saat lagi.';
 
+  /// [Click To Action]
+  static const String CLICK_TO_ACTION_SAVE = 'Simpan';
+  static const String CLICK_TO_ACTION_CANCEL = 'Batal';
+  static const String CLICK_TO_ACTION_DELETE = 'Hapus';
+  static const String CLICK_TO_ACTION_EDIT = 'Edit';
+  static const String CLICK_TO_ACTION_VIEW = 'Lihat';
+  static const String CLICK_TO_ACTION_SEE_MORE = 'Lihat Semua';
+  static const String CLICK_TO_ACTION_CLOSE = 'Tutup';
+  static const String CLICK_TO_ACTION_SEARCH = 'Cari';
+  static const String CLICK_TO_ACTION_FILTER = 'Filter';
+  static const String CLICK_TO_ACTION_RESET = 'Reset';
+
+  /// [Icon Color]
+  static const String ICON_COLOR_TITLE = 'Ikon dan Warna';
+  static const String ICON_COLOR_FINANCE = 'Keuangan';
+  static const String ICON_COLOR_SHOPPING = 'Belanja';
+  static const String ICON_COLOR_HOME_UTILITY = 'Peralatan Rumah';
+  static const String ICON_COLOR_TRANSPORT_TRAVEL = 'Transportasi Travel';
+  static const String ICON_COLOR_FOOD_DRINK = 'Makanan Minuman';
+  static const String ICON_COLOR_HEALTH_LIFESTYLE = 'Kesehatan Lifestyle';
+  static const String ICON_COLOR_ENTERTAINMENT = 'Hiburan';
+  static const String ICON_COLOR_WORK = 'Kerja';
+  static const String ICON_COLOR_OTHER = 'Lainnya';
+
   /// [Validation]
-  static String validatorRequired(String field) => 'This ${field.toLowerCase()} is required';
+  static String validatorRequired(String field) => '$field harus diisi';
 }

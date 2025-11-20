@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waltrack/applications/constant/assets.dart';
+import 'package:waltrack/applications/constant/constants.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/extension/app_theme_extension.dart';
 import 'package:waltrack/applications/extension/string_extension.dart';
@@ -38,28 +39,28 @@ class SwitcherPage extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: Assets.iconHome.toSvg(),
                   activeIcon: Assets.iconHomeFilled.toSvg(),
-                  label: 'Home',
+                  label: Constants.SWITCHER_HOME_LABEL,
                   onTap: () => _goBranch(0),
                   isSelected: navigationShell.currentIndex == 0,
                 ),
                 BottomNavigationBarItem(
                   icon: Assets.iconWallet.toSvg(),
                   activeIcon: Assets.iconWalletFilled.toSvg(),
-                  label: 'Wallet',
+                  label: Constants.SWITCHER_WALLET_LABEL,
                   onTap: () => _goBranch(1),
                   isSelected: navigationShell.currentIndex == 1,
                 ),
                 BottomNavigationBarItem(
                   icon: Assets.iconTransaction.toSvg(),
                   activeIcon: Assets.iconTransactionFilled.toSvg(),
-                  label: 'Transaction',
+                  label: Constants.SWITCHER_TRANSACTION_LABEL,
                   onTap: () => _goBranch(2),
                   isSelected: navigationShell.currentIndex == 2,
                 ),
                 BottomNavigationBarItem(
                   icon: Assets.iconProfile.toSvg(),
                   activeIcon: Assets.iconProfileFilled.toSvg(),
-                  label: 'Profile',
+                  label: Constants.SWITCHER_PROFILE_LABEL,
                   onTap: () => _goBranch(4),
                   isSelected: navigationShell.currentIndex == 4,
                 ),

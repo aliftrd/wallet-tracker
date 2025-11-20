@@ -21,8 +21,11 @@ class WalletRepositoryImpl implements WalletRepository {
 
   @override
   Future<Either<Failure, WalletDetailEntity>> fetchById(int walletId) async {
-    // TODO: implement fetchById
-    throw UnimplementedError();
+    final response = await _walletRemoteDatasource.fetchById(walletId);
+    return response.fold(
+      (failure) => left(failure),
+      (data) => right(data.toEntity()),
+    );
   }
 
   @override

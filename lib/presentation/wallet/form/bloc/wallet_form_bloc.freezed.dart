@@ -55,11 +55,14 @@ extension WalletFormEventPatterns on WalletFormEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _InitializeEvent value)?  initialize,TResult Function( _SubmitEvent value)?  submit,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _InitializeEvent value)?  initialize,TResult Function( _NameChangedEvent value)?  nameChanged,TResult Function( _BalanceChangedEvent value)?  balanceChanged,TResult Function( _ColorAndIconChangedEvent value)?  colorAndIconChanged,TResult Function( _SubmitEvent value)?  submit,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _InitializeEvent() when initialize != null:
-return initialize(_that);case _SubmitEvent() when submit != null:
+return initialize(_that);case _NameChangedEvent() when nameChanged != null:
+return nameChanged(_that);case _BalanceChangedEvent() when balanceChanged != null:
+return balanceChanged(_that);case _ColorAndIconChangedEvent() when colorAndIconChanged != null:
+return colorAndIconChanged(_that);case _SubmitEvent() when submit != null:
 return submit(_that);case _:
   return orElse();
 
@@ -78,11 +81,14 @@ return submit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _InitializeEvent value)  initialize,required TResult Function( _SubmitEvent value)  submit,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _InitializeEvent value)  initialize,required TResult Function( _NameChangedEvent value)  nameChanged,required TResult Function( _BalanceChangedEvent value)  balanceChanged,required TResult Function( _ColorAndIconChangedEvent value)  colorAndIconChanged,required TResult Function( _SubmitEvent value)  submit,}){
 final _that = this;
 switch (_that) {
 case _InitializeEvent():
-return initialize(_that);case _SubmitEvent():
+return initialize(_that);case _NameChangedEvent():
+return nameChanged(_that);case _BalanceChangedEvent():
+return balanceChanged(_that);case _ColorAndIconChangedEvent():
+return colorAndIconChanged(_that);case _SubmitEvent():
 return submit(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -100,11 +106,14 @@ return submit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _InitializeEvent value)?  initialize,TResult? Function( _SubmitEvent value)?  submit,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _InitializeEvent value)?  initialize,TResult? Function( _NameChangedEvent value)?  nameChanged,TResult? Function( _BalanceChangedEvent value)?  balanceChanged,TResult? Function( _ColorAndIconChangedEvent value)?  colorAndIconChanged,TResult? Function( _SubmitEvent value)?  submit,}){
 final _that = this;
 switch (_that) {
 case _InitializeEvent() when initialize != null:
-return initialize(_that);case _SubmitEvent() when submit != null:
+return initialize(_that);case _NameChangedEvent() when nameChanged != null:
+return nameChanged(_that);case _BalanceChangedEvent() when balanceChanged != null:
+return balanceChanged(_that);case _ColorAndIconChangedEvent() when colorAndIconChanged != null:
+return colorAndIconChanged(_that);case _SubmitEvent() when submit != null:
 return submit(_that);case _:
   return null;
 
@@ -122,10 +131,13 @@ return submit(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int? walletId)?  initialize,TResult Function()?  submit,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int? walletId)?  initialize,TResult Function( String name)?  nameChanged,TResult Function( String balance)?  balanceChanged,TResult Function( Color color,  IconData icon)?  colorAndIconChanged,TResult Function()?  submit,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InitializeEvent() when initialize != null:
-return initialize(_that.walletId);case _SubmitEvent() when submit != null:
+return initialize(_that.walletId);case _NameChangedEvent() when nameChanged != null:
+return nameChanged(_that.name);case _BalanceChangedEvent() when balanceChanged != null:
+return balanceChanged(_that.balance);case _ColorAndIconChangedEvent() when colorAndIconChanged != null:
+return colorAndIconChanged(_that.color,_that.icon);case _SubmitEvent() when submit != null:
 return submit();case _:
   return orElse();
 
@@ -144,10 +156,13 @@ return submit();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int? walletId)  initialize,required TResult Function()  submit,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int? walletId)  initialize,required TResult Function( String name)  nameChanged,required TResult Function( String balance)  balanceChanged,required TResult Function( Color color,  IconData icon)  colorAndIconChanged,required TResult Function()  submit,}) {final _that = this;
 switch (_that) {
 case _InitializeEvent():
-return initialize(_that.walletId);case _SubmitEvent():
+return initialize(_that.walletId);case _NameChangedEvent():
+return nameChanged(_that.name);case _BalanceChangedEvent():
+return balanceChanged(_that.balance);case _ColorAndIconChangedEvent():
+return colorAndIconChanged(_that.color,_that.icon);case _SubmitEvent():
 return submit();case _:
   throw StateError('Unexpected subclass');
 
@@ -165,10 +180,13 @@ return submit();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int? walletId)?  initialize,TResult? Function()?  submit,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int? walletId)?  initialize,TResult? Function( String name)?  nameChanged,TResult? Function( String balance)?  balanceChanged,TResult? Function( Color color,  IconData icon)?  colorAndIconChanged,TResult? Function()?  submit,}) {final _that = this;
 switch (_that) {
 case _InitializeEvent() when initialize != null:
-return initialize(_that.walletId);case _SubmitEvent() when submit != null:
+return initialize(_that.walletId);case _NameChangedEvent() when nameChanged != null:
+return nameChanged(_that.name);case _BalanceChangedEvent() when balanceChanged != null:
+return balanceChanged(_that.balance);case _ColorAndIconChangedEvent() when colorAndIconChanged != null:
+return colorAndIconChanged(_that.color,_that.icon);case _SubmitEvent() when submit != null:
 return submit();case _:
   return null;
 
@@ -246,6 +264,206 @@ as int?,
 /// @nodoc
 
 
+class _NameChangedEvent implements WalletFormEvent {
+  const _NameChangedEvent(this.name);
+  
+
+ final  String name;
+
+/// Create a copy of WalletFormEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NameChangedEventCopyWith<_NameChangedEvent> get copyWith => __$NameChangedEventCopyWithImpl<_NameChangedEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NameChangedEvent&&(identical(other.name, name) || other.name == name));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,name);
+
+@override
+String toString() {
+  return 'WalletFormEvent.nameChanged(name: $name)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$NameChangedEventCopyWith<$Res> implements $WalletFormEventCopyWith<$Res> {
+  factory _$NameChangedEventCopyWith(_NameChangedEvent value, $Res Function(_NameChangedEvent) _then) = __$NameChangedEventCopyWithImpl;
+@useResult
+$Res call({
+ String name
+});
+
+
+
+
+}
+/// @nodoc
+class __$NameChangedEventCopyWithImpl<$Res>
+    implements _$NameChangedEventCopyWith<$Res> {
+  __$NameChangedEventCopyWithImpl(this._self, this._then);
+
+  final _NameChangedEvent _self;
+  final $Res Function(_NameChangedEvent) _then;
+
+/// Create a copy of WalletFormEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? name = null,}) {
+  return _then(_NameChangedEvent(
+null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _BalanceChangedEvent implements WalletFormEvent {
+  const _BalanceChangedEvent(this.balance);
+  
+
+ final  String balance;
+
+/// Create a copy of WalletFormEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$BalanceChangedEventCopyWith<_BalanceChangedEvent> get copyWith => __$BalanceChangedEventCopyWithImpl<_BalanceChangedEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BalanceChangedEvent&&(identical(other.balance, balance) || other.balance == balance));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,balance);
+
+@override
+String toString() {
+  return 'WalletFormEvent.balanceChanged(balance: $balance)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$BalanceChangedEventCopyWith<$Res> implements $WalletFormEventCopyWith<$Res> {
+  factory _$BalanceChangedEventCopyWith(_BalanceChangedEvent value, $Res Function(_BalanceChangedEvent) _then) = __$BalanceChangedEventCopyWithImpl;
+@useResult
+$Res call({
+ String balance
+});
+
+
+
+
+}
+/// @nodoc
+class __$BalanceChangedEventCopyWithImpl<$Res>
+    implements _$BalanceChangedEventCopyWith<$Res> {
+  __$BalanceChangedEventCopyWithImpl(this._self, this._then);
+
+  final _BalanceChangedEvent _self;
+  final $Res Function(_BalanceChangedEvent) _then;
+
+/// Create a copy of WalletFormEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? balance = null,}) {
+  return _then(_BalanceChangedEvent(
+null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _ColorAndIconChangedEvent implements WalletFormEvent {
+  const _ColorAndIconChangedEvent(this.color, this.icon);
+  
+
+ final  Color color;
+ final  IconData icon;
+
+/// Create a copy of WalletFormEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ColorAndIconChangedEventCopyWith<_ColorAndIconChangedEvent> get copyWith => __$ColorAndIconChangedEventCopyWithImpl<_ColorAndIconChangedEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ColorAndIconChangedEvent&&(identical(other.color, color) || other.color == color)&&(identical(other.icon, icon) || other.icon == icon));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,color,icon);
+
+@override
+String toString() {
+  return 'WalletFormEvent.colorAndIconChanged(color: $color, icon: $icon)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ColorAndIconChangedEventCopyWith<$Res> implements $WalletFormEventCopyWith<$Res> {
+  factory _$ColorAndIconChangedEventCopyWith(_ColorAndIconChangedEvent value, $Res Function(_ColorAndIconChangedEvent) _then) = __$ColorAndIconChangedEventCopyWithImpl;
+@useResult
+$Res call({
+ Color color, IconData icon
+});
+
+
+
+
+}
+/// @nodoc
+class __$ColorAndIconChangedEventCopyWithImpl<$Res>
+    implements _$ColorAndIconChangedEventCopyWith<$Res> {
+  __$ColorAndIconChangedEventCopyWithImpl(this._self, this._then);
+
+  final _ColorAndIconChangedEvent _self;
+  final $Res Function(_ColorAndIconChangedEvent) _then;
+
+/// Create a copy of WalletFormEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? color = null,Object? icon = null,}) {
+  return _then(_ColorAndIconChangedEvent(
+null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as Color,null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
+as IconData,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
 class _SubmitEvent implements WalletFormEvent {
   const _SubmitEvent();
   
@@ -278,7 +496,7 @@ String toString() {
 /// @nodoc
 mixin _$WalletFormState {
 
- SubmissionStatus get status; int? get selectedWalletId; WalletFormData get form; String? get message; Map<String, dynamic>? get errors;
+ SubmissionStatus get status; WalletFormData get form; String? get message; Map<String, dynamic>? get errors;
 /// Create a copy of WalletFormState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -289,16 +507,16 @@ $WalletFormStateCopyWith<WalletFormState> get copyWith => _$WalletFormStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WalletFormState&&(identical(other.status, status) || other.status == status)&&(identical(other.selectedWalletId, selectedWalletId) || other.selectedWalletId == selectedWalletId)&&(identical(other.form, form) || other.form == form)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.errors, errors));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WalletFormState&&(identical(other.status, status) || other.status == status)&&(identical(other.form, form) || other.form == form)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.errors, errors));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,selectedWalletId,form,message,const DeepCollectionEquality().hash(errors));
+int get hashCode => Object.hash(runtimeType,status,form,message,const DeepCollectionEquality().hash(errors));
 
 @override
 String toString() {
-  return 'WalletFormState(status: $status, selectedWalletId: $selectedWalletId, form: $form, message: $message, errors: $errors)';
+  return 'WalletFormState(status: $status, form: $form, message: $message, errors: $errors)';
 }
 
 
@@ -309,7 +527,7 @@ abstract mixin class $WalletFormStateCopyWith<$Res>  {
   factory $WalletFormStateCopyWith(WalletFormState value, $Res Function(WalletFormState) _then) = _$WalletFormStateCopyWithImpl;
 @useResult
 $Res call({
- SubmissionStatus status, int? selectedWalletId, WalletFormData form, String? message, Map<String, dynamic>? errors
+ SubmissionStatus status, WalletFormData form, String? message, Map<String, dynamic>? errors
 });
 
 
@@ -326,11 +544,10 @@ class _$WalletFormStateCopyWithImpl<$Res>
 
 /// Create a copy of WalletFormState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? selectedWalletId = freezed,Object? form = null,Object? message = freezed,Object? errors = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? form = null,Object? message = freezed,Object? errors = freezed,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as SubmissionStatus,selectedWalletId: freezed == selectedWalletId ? _self.selectedWalletId : selectedWalletId // ignore: cast_nullable_to_non_nullable
-as int?,form: null == form ? _self.form : form // ignore: cast_nullable_to_non_nullable
+as SubmissionStatus,form: null == form ? _self.form : form // ignore: cast_nullable_to_non_nullable
 as WalletFormData,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,errors: freezed == errors ? _self.errors : errors // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,
@@ -424,10 +641,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SubmissionStatus status,  int? selectedWalletId,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SubmissionStatus status,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WalletFormState() when $default != null:
-return $default(_that.status,_that.selectedWalletId,_that.form,_that.message,_that.errors);case _:
+return $default(_that.status,_that.form,_that.message,_that.errors);case _:
   return orElse();
 
 }
@@ -445,10 +662,10 @@ return $default(_that.status,_that.selectedWalletId,_that.form,_that.message,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SubmissionStatus status,  int? selectedWalletId,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SubmissionStatus status,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)  $default,) {final _that = this;
 switch (_that) {
 case _WalletFormState():
-return $default(_that.status,_that.selectedWalletId,_that.form,_that.message,_that.errors);}
+return $default(_that.status,_that.form,_that.message,_that.errors);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -462,10 +679,10 @@ return $default(_that.status,_that.selectedWalletId,_that.form,_that.message,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SubmissionStatus status,  int? selectedWalletId,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SubmissionStatus status,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)?  $default,) {final _that = this;
 switch (_that) {
 case _WalletFormState() when $default != null:
-return $default(_that.status,_that.selectedWalletId,_that.form,_that.message,_that.errors);case _:
+return $default(_that.status,_that.form,_that.message,_that.errors);case _:
   return null;
 
 }
@@ -477,11 +694,10 @@ return $default(_that.status,_that.selectedWalletId,_that.form,_that.message,_th
 
 
 class _WalletFormState extends WalletFormState {
-  const _WalletFormState({this.status = SubmissionStatus.initial, this.selectedWalletId, this.form = const WalletFormData(), this.message, final  Map<String, dynamic>? errors}): _errors = errors,super._();
+  const _WalletFormState({this.status = SubmissionStatus.initial, this.form = const WalletFormData(), this.message, final  Map<String, dynamic>? errors}): _errors = errors,super._();
   
 
 @override@JsonKey() final  SubmissionStatus status;
-@override final  int? selectedWalletId;
 @override@JsonKey() final  WalletFormData form;
 @override final  String? message;
  final  Map<String, dynamic>? _errors;
@@ -504,16 +720,16 @@ _$WalletFormStateCopyWith<_WalletFormState> get copyWith => __$WalletFormStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WalletFormState&&(identical(other.status, status) || other.status == status)&&(identical(other.selectedWalletId, selectedWalletId) || other.selectedWalletId == selectedWalletId)&&(identical(other.form, form) || other.form == form)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other._errors, _errors));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WalletFormState&&(identical(other.status, status) || other.status == status)&&(identical(other.form, form) || other.form == form)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other._errors, _errors));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,selectedWalletId,form,message,const DeepCollectionEquality().hash(_errors));
+int get hashCode => Object.hash(runtimeType,status,form,message,const DeepCollectionEquality().hash(_errors));
 
 @override
 String toString() {
-  return 'WalletFormState(status: $status, selectedWalletId: $selectedWalletId, form: $form, message: $message, errors: $errors)';
+  return 'WalletFormState(status: $status, form: $form, message: $message, errors: $errors)';
 }
 
 
@@ -524,7 +740,7 @@ abstract mixin class _$WalletFormStateCopyWith<$Res> implements $WalletFormState
   factory _$WalletFormStateCopyWith(_WalletFormState value, $Res Function(_WalletFormState) _then) = __$WalletFormStateCopyWithImpl;
 @override @useResult
 $Res call({
- SubmissionStatus status, int? selectedWalletId, WalletFormData form, String? message, Map<String, dynamic>? errors
+ SubmissionStatus status, WalletFormData form, String? message, Map<String, dynamic>? errors
 });
 
 
@@ -541,11 +757,10 @@ class __$WalletFormStateCopyWithImpl<$Res>
 
 /// Create a copy of WalletFormState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? selectedWalletId = freezed,Object? form = null,Object? message = freezed,Object? errors = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? form = null,Object? message = freezed,Object? errors = freezed,}) {
   return _then(_WalletFormState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as SubmissionStatus,selectedWalletId: freezed == selectedWalletId ? _self.selectedWalletId : selectedWalletId // ignore: cast_nullable_to_non_nullable
-as int?,form: null == form ? _self.form : form // ignore: cast_nullable_to_non_nullable
+as SubmissionStatus,form: null == form ? _self.form : form // ignore: cast_nullable_to_non_nullable
 as WalletFormData,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,errors: freezed == errors ? _self._errors : errors // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,
@@ -567,7 +782,7 @@ $WalletFormDataCopyWith<$Res> get form {
 /// @nodoc
 mixin _$WalletFormData {
 
- String? get name; int? get balance;
+ int? get id; String? get name; int get balance; Color? get color; IconData? get icon;
 /// Create a copy of WalletFormData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -578,16 +793,16 @@ $WalletFormDataCopyWith<WalletFormData> get copyWith => _$WalletFormDataCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WalletFormData&&(identical(other.name, name) || other.name == name)&&(identical(other.balance, balance) || other.balance == balance));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WalletFormData&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.balance, balance) || other.balance == balance)&&(identical(other.color, color) || other.color == color)&&(identical(other.icon, icon) || other.icon == icon));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,balance);
+int get hashCode => Object.hash(runtimeType,id,name,balance,color,icon);
 
 @override
 String toString() {
-  return 'WalletFormData(name: $name, balance: $balance)';
+  return 'WalletFormData(id: $id, name: $name, balance: $balance, color: $color, icon: $icon)';
 }
 
 
@@ -598,7 +813,7 @@ abstract mixin class $WalletFormDataCopyWith<$Res>  {
   factory $WalletFormDataCopyWith(WalletFormData value, $Res Function(WalletFormData) _then) = _$WalletFormDataCopyWithImpl;
 @useResult
 $Res call({
- String? name, int? balance
+ int? id, String? name, int balance, Color? color, IconData? icon
 });
 
 
@@ -615,11 +830,14 @@ class _$WalletFormDataCopyWithImpl<$Res>
 
 /// Create a copy of WalletFormData
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? balance = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? balance = null,Object? color = freezed,Object? icon = freezed,}) {
   return _then(_self.copyWith(
-name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,balance: freezed == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
-as int?,
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
+as int,color: freezed == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as Color?,icon: freezed == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
+as IconData?,
   ));
 }
 
@@ -701,10 +919,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name,  int? balance)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? name,  int balance,  Color? color,  IconData? icon)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WalletFormData() when $default != null:
-return $default(_that.name,_that.balance);case _:
+return $default(_that.id,_that.name,_that.balance,_that.color,_that.icon);case _:
   return orElse();
 
 }
@@ -722,10 +940,10 @@ return $default(_that.name,_that.balance);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name,  int? balance)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? name,  int balance,  Color? color,  IconData? icon)  $default,) {final _that = this;
 switch (_that) {
 case _WalletFormData():
-return $default(_that.name,_that.balance);}
+return $default(_that.id,_that.name,_that.balance,_that.color,_that.icon);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -739,10 +957,10 @@ return $default(_that.name,_that.balance);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name,  int? balance)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? name,  int balance,  Color? color,  IconData? icon)?  $default,) {final _that = this;
 switch (_that) {
 case _WalletFormData() when $default != null:
-return $default(_that.name,_that.balance);case _:
+return $default(_that.id,_that.name,_that.balance,_that.color,_that.icon);case _:
   return null;
 
 }
@@ -754,11 +972,14 @@ return $default(_that.name,_that.balance);case _:
 
 
 class _WalletFormData extends WalletFormData {
-  const _WalletFormData({this.name = '', this.balance = 0}): super._();
+  const _WalletFormData({this.id, this.name, this.balance = 0, this.color, this.icon}): super._();
   
 
-@override@JsonKey() final  String? name;
-@override@JsonKey() final  int? balance;
+@override final  int? id;
+@override final  String? name;
+@override@JsonKey() final  int balance;
+@override final  Color? color;
+@override final  IconData? icon;
 
 /// Create a copy of WalletFormData
 /// with the given fields replaced by the non-null parameter values.
@@ -770,16 +991,16 @@ _$WalletFormDataCopyWith<_WalletFormData> get copyWith => __$WalletFormDataCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WalletFormData&&(identical(other.name, name) || other.name == name)&&(identical(other.balance, balance) || other.balance == balance));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WalletFormData&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.balance, balance) || other.balance == balance)&&(identical(other.color, color) || other.color == color)&&(identical(other.icon, icon) || other.icon == icon));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,balance);
+int get hashCode => Object.hash(runtimeType,id,name,balance,color,icon);
 
 @override
 String toString() {
-  return 'WalletFormData(name: $name, balance: $balance)';
+  return 'WalletFormData(id: $id, name: $name, balance: $balance, color: $color, icon: $icon)';
 }
 
 
@@ -790,7 +1011,7 @@ abstract mixin class _$WalletFormDataCopyWith<$Res> implements $WalletFormDataCo
   factory _$WalletFormDataCopyWith(_WalletFormData value, $Res Function(_WalletFormData) _then) = __$WalletFormDataCopyWithImpl;
 @override @useResult
 $Res call({
- String? name, int? balance
+ int? id, String? name, int balance, Color? color, IconData? icon
 });
 
 
@@ -807,11 +1028,14 @@ class __$WalletFormDataCopyWithImpl<$Res>
 
 /// Create a copy of WalletFormData
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? balance = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? balance = null,Object? color = freezed,Object? icon = freezed,}) {
   return _then(_WalletFormData(
-name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,balance: freezed == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
-as int?,
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
+as int,color: freezed == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as Color?,icon: freezed == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
+as IconData?,
   ));
 }
 

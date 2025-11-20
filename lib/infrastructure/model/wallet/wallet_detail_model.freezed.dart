@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WalletDetailModel {
 
- int get id; String get name; int get balance; String get color; String get icon;
+ int get id; String get name;@JsonKey(name: 'initial_balance') int get initialBalance; String get color; String get icon;
 /// Create a copy of WalletDetailModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $WalletDetailModelCopyWith<WalletDetailModel> get copyWith => _$WalletDetailMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WalletDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.balance, balance) || other.balance == balance)&&(identical(other.color, color) || other.color == color)&&(identical(other.icon, icon) || other.icon == icon));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WalletDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.initialBalance, initialBalance) || other.initialBalance == initialBalance)&&(identical(other.color, color) || other.color == color)&&(identical(other.icon, icon) || other.icon == icon));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,balance,color,icon);
+int get hashCode => Object.hash(runtimeType,id,name,initialBalance,color,icon);
 
 @override
 String toString() {
-  return 'WalletDetailModel(id: $id, name: $name, balance: $balance, color: $color, icon: $icon)';
+  return 'WalletDetailModel(id: $id, name: $name, initialBalance: $initialBalance, color: $color, icon: $icon)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $WalletDetailModelCopyWith<$Res>  {
   factory $WalletDetailModelCopyWith(WalletDetailModel value, $Res Function(WalletDetailModel) _then) = _$WalletDetailModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, int balance, String color, String icon
+ int id, String name,@JsonKey(name: 'initial_balance') int initialBalance, String color, String icon
 });
 
 
@@ -65,11 +65,11 @@ class _$WalletDetailModelCopyWithImpl<$Res>
 
 /// Create a copy of WalletDetailModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? balance = null,Object? color = null,Object? icon = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? initialBalance = null,Object? color = null,Object? icon = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
+as String,initialBalance: null == initialBalance ? _self.initialBalance : initialBalance // ignore: cast_nullable_to_non_nullable
 as int,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as String,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
 as String,
@@ -157,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int balance,  String color,  String icon)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name, @JsonKey(name: 'initial_balance')  int initialBalance,  String color,  String icon)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WalletDetailModel() when $default != null:
-return $default(_that.id,_that.name,_that.balance,_that.color,_that.icon);case _:
+return $default(_that.id,_that.name,_that.initialBalance,_that.color,_that.icon);case _:
   return orElse();
 
 }
@@ -178,10 +178,10 @@ return $default(_that.id,_that.name,_that.balance,_that.color,_that.icon);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int balance,  String color,  String icon)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name, @JsonKey(name: 'initial_balance')  int initialBalance,  String color,  String icon)  $default,) {final _that = this;
 switch (_that) {
 case _WalletDetailModel():
-return $default(_that.id,_that.name,_that.balance,_that.color,_that.icon);case _:
+return $default(_that.id,_that.name,_that.initialBalance,_that.color,_that.icon);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +198,10 @@ return $default(_that.id,_that.name,_that.balance,_that.color,_that.icon);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int balance,  String color,  String icon)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name, @JsonKey(name: 'initial_balance')  int initialBalance,  String color,  String icon)?  $default,) {final _that = this;
 switch (_that) {
 case _WalletDetailModel() when $default != null:
-return $default(_that.id,_that.name,_that.balance,_that.color,_that.icon);case _:
+return $default(_that.id,_that.name,_that.initialBalance,_that.color,_that.icon);case _:
   return null;
 
 }
@@ -213,12 +213,12 @@ return $default(_that.id,_that.name,_that.balance,_that.color,_that.icon);case _
 @JsonSerializable()
 
 class _WalletDetailModel extends WalletDetailModel {
-  const _WalletDetailModel({required this.id, required this.name, required this.balance, required this.color, required this.icon}): super._();
+  const _WalletDetailModel({required this.id, required this.name, @JsonKey(name: 'initial_balance') required this.initialBalance, required this.color, required this.icon}): super._();
   factory _WalletDetailModel.fromJson(Map<String, dynamic> json) => _$WalletDetailModelFromJson(json);
 
 @override final  int id;
 @override final  String name;
-@override final  int balance;
+@override@JsonKey(name: 'initial_balance') final  int initialBalance;
 @override final  String color;
 @override final  String icon;
 
@@ -235,16 +235,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WalletDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.balance, balance) || other.balance == balance)&&(identical(other.color, color) || other.color == color)&&(identical(other.icon, icon) || other.icon == icon));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WalletDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.initialBalance, initialBalance) || other.initialBalance == initialBalance)&&(identical(other.color, color) || other.color == color)&&(identical(other.icon, icon) || other.icon == icon));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,balance,color,icon);
+int get hashCode => Object.hash(runtimeType,id,name,initialBalance,color,icon);
 
 @override
 String toString() {
-  return 'WalletDetailModel(id: $id, name: $name, balance: $balance, color: $color, icon: $icon)';
+  return 'WalletDetailModel(id: $id, name: $name, initialBalance: $initialBalance, color: $color, icon: $icon)';
 }
 
 
@@ -255,7 +255,7 @@ abstract mixin class _$WalletDetailModelCopyWith<$Res> implements $WalletDetailM
   factory _$WalletDetailModelCopyWith(_WalletDetailModel value, $Res Function(_WalletDetailModel) _then) = __$WalletDetailModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, int balance, String color, String icon
+ int id, String name,@JsonKey(name: 'initial_balance') int initialBalance, String color, String icon
 });
 
 
@@ -272,11 +272,11 @@ class __$WalletDetailModelCopyWithImpl<$Res>
 
 /// Create a copy of WalletDetailModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? balance = null,Object? color = null,Object? icon = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? initialBalance = null,Object? color = null,Object? icon = null,}) {
   return _then(_WalletDetailModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,balance: null == balance ? _self.balance : balance // ignore: cast_nullable_to_non_nullable
+as String,initialBalance: null == initialBalance ? _self.initialBalance : initialBalance // ignore: cast_nullable_to_non_nullable
 as int,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as String,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
 as String,

@@ -39,4 +39,6 @@ extension StringExtension on String {
 
     return IconData(codePoint, fontFamily: 'MaterialIcons');
   }
+
+  int toNumericString() => int.parse(replaceAll(RegExp(r'[^0-9]'), ''));
 }

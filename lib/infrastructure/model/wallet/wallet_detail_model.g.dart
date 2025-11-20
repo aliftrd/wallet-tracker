@@ -10,7 +10,7 @@ _WalletDetailModel _$WalletDetailModelFromJson(Map<String, dynamic> json) =>
     _WalletDetailModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      balance: (json['balance'] as num).toInt(),
+      initialBalance: (json['initial_balance'] as num).toInt(),
       color: json['color'] as String,
       icon: json['icon'] as String,
     );
@@ -19,7 +19,7 @@ Map<String, dynamic> _$WalletDetailModelToJson(_WalletDetailModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'balance': instance.balance,
+      'initial_balance': instance.initialBalance,
       'color': instance.color,
       'icon': instance.icon,
     };

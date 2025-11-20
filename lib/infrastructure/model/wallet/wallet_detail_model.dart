@@ -12,7 +12,7 @@ abstract class WalletDetailModel with _$WalletDetailModel {
   const factory WalletDetailModel({
     required int id,
     required String name,
-    required int balance,
+    @JsonKey(name: 'initial_balance') required int initialBalance,
     required String color,
     required String icon,
   }) = _WalletDetailModel;
@@ -22,7 +22,7 @@ abstract class WalletDetailModel with _$WalletDetailModel {
   WalletDetailEntity toEntity() => WalletDetailEntity(
     id: id,
     name: name,
-    balance: balance,
+    balance: initialBalance,
     color: color.toColor(),
     icon: icon.toIconData(),
   );

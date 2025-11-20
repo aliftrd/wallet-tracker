@@ -17,7 +17,7 @@ class BaseResponseList<T> {
     Function(List<dynamic>) fromJsonData,
   ) {
     return BaseResponseList(
-      message: json['message'] ?? "",
+      message: json['message'] ?? '',
       responseCode: responseCode,
       data: json['data'] != null ? fromJsonData(json['data'] is String ? json : json['data']) : [],
     );

@@ -4,6 +4,16 @@ formatter:
   trailing_commas: preserve
   page_width: 150
 
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
+    unused_import: error
+    prefer_relative_imports: error
+    prefer_single_quotes: error
+
 linter:
   rules:
     constant_identifier_names: false
+    prefer_relative_imports: false
+    prefer_single_quotes: true
+    

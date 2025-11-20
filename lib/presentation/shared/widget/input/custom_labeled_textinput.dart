@@ -58,7 +58,7 @@ class CustomLabeledTextInput extends StatelessWidget {
                 TextSpan(text: label, style: context.textTheme.bodyLarge),
                 if (isRequired)
                   TextSpan(
-                    text: " *",
+                    text: ' *',
                     style: context.textTheme.bodyLarge?.copyWith(color: context.color.primary),
                   ),
               ],
@@ -66,33 +66,35 @@ class CustomLabeledTextInput extends StatelessWidget {
           ),
         Skeletonizer(
           enabled: isLoading,
-          child: TextFormField(
-            enabled: enabled,
-            controller: controller,
-            keyboardType: keyboardType,
-            inputFormatters: inputFormatters,
-            obscureText: obscureText,
-            decoration: InputDecoration(
-              hintText: hintText,
-              suffixIconConstraints: const BoxConstraints(
-                minWidth: 2,
-                minHeight: 2,
+          child: Skeleton.unite(
+            child: TextFormField(
+              enabled: enabled,
+              controller: controller,
+              keyboardType: keyboardType,
+              inputFormatters: inputFormatters,
+              obscureText: obscureText,
+              decoration: InputDecoration(
+                hintText: hintText,
+                suffixIconConstraints: const BoxConstraints(
+                  minWidth: 2,
+                  minHeight: 2,
+                ),
+                errorText: errorText,
+                contentPadding: EdgeInsets.only(bottom: Sizes.s10, top: Sizes.s20),
+                prefix: !hasPrefix ? Padding(padding: EdgeInsets.only(left: Sizes.s16)) : null,
+                prefixIcon: prefixIcon,
+                suffixIcon: Padding(
+                  padding: EdgeInsets.only(right: Sizes.s16),
+                  child: suffixIcon,
+                ),
               ),
-              errorText: errorText,
-              contentPadding: EdgeInsets.only(bottom: Sizes.s10, top: Sizes.s20),
-              prefix: !hasPrefix ? Padding(padding: EdgeInsets.only(left: Sizes.s16)) : null,
-              prefixIcon: prefixIcon,
-              suffixIcon: Padding(
-                padding: EdgeInsets.only(right: Sizes.s16),
-                child: suffixIcon,
-              ),
+              validator: (value) {
+                if (isRequired && (value == null || value.isEmpty)) {
+                  return Constants.validatorRequired(label ?? hintText);
+                }
+                return validator?.call(value);
+              },
             ),
-            validator: (value) {
-              if (isRequired && (value == null || value.isEmpty)) {
-                return Constants.validatorRequired(label ?? hintText);
-              }
-              return validator?.call(value);
-            },
           ),
         ),
       ],

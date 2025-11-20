@@ -13,7 +13,7 @@ class BaseResponse<T> {
 
   factory BaseResponse.fromJson(Map<String, dynamic> json, ResponseCode responseCode, Function fromJsonData) {
     return BaseResponse(
-      message: json['message'] ?? "",
+      message: json['message'] ?? '',
       responseCode: responseCode,
       data: json['data'] != null ? fromJsonData(json['data']) : fromJsonData(<String, dynamic>{}),
     );

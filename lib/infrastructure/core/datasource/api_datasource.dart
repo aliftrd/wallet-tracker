@@ -126,8 +126,8 @@ class ApiDataSource<T> {
         ),
       );
     } catch (e, stacktrace) {
-      debugPrint("ERROR POST: ${e.toString()}");
-      debugPrint("STACKTRACE POST: ${stacktrace.toString()}");
+      debugPrint('ERROR POST: ${e.toString()}');
+      debugPrint('STACKTRACE POST: ${stacktrace.toString()}');
 
       return Left(_mapException(e));
     }
@@ -163,8 +163,8 @@ class ApiDataSource<T> {
         ),
       );
     } catch (e, stacktrace) {
-      debugPrint("ERROR POST: ${e.toString()}");
-      debugPrint("STACKTRACE POST: ${stacktrace.toString()}");
+      debugPrint('ERROR POST: ${e.toString()}');
+      debugPrint('STACKTRACE POST: ${stacktrace.toString()}');
 
       return Left(_mapException(e));
     }

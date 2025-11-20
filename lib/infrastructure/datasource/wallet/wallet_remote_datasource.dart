@@ -22,5 +22,5 @@ class WalletRemoteDatasourceImpl implements WalletRemoteDatasource {
   Future<Either<Failure, List<WalletViewModel>>> fetch() async => _apiClient.wallets.getList(Endpoints.wallets);
 
   @override
-  Future<Either<Failure, WalletDetailModel>> fetchById(int walletId) async => _apiClient.wallet.get(Endpoints.wallets + '/$walletId');
+  Future<Either<Failure, WalletDetailModel>> fetchById(int walletId) async => _apiClient.wallet.get('${Endpoints.wallets}/$walletId');
 }
