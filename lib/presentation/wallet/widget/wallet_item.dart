@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/extension/app_theme_extension.dart';
-import 'package:waltrack/domain/entity/wallet/wallet_entity.dart';
+import 'package:waltrack/domain/entity/wallet/wallet_view_entity.dart';
 
 class WalletItem extends StatelessWidget {
-  final WalletEntity wallet;
+  final WalletViewEntity wallet;
   const WalletItem({super.key, required this.wallet});
 
   @override
@@ -45,7 +45,7 @@ class WalletItem extends StatelessWidget {
                   style: context.textTheme.bodyMedium,
                 ),
                 Text(
-                  wallet.balance.formatted,
+                  wallet.balance,
                   style: context.textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

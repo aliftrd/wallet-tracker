@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/extension/app_theme_extension.dart';
 import 'package:waltrack/applications/extension/form_state_extension.dart';
-import 'package:waltrack/domain/entity/wallet/wallet_entity.dart';
+import 'package:waltrack/domain/entity/wallet/wallet_view_entity.dart';
 import 'package:waltrack/presentation/shared/widget/error/custom_error_widget.dart';
+import 'package:waltrack/presentation/wallet/form/wallet_form_page.dart';
 import 'package:waltrack/presentation/wallet/list/bloc/wallet_bloc.dart';
 import 'package:waltrack/presentation/wallet/widget/wallet_item.dart';
 
@@ -32,7 +34,7 @@ class _WalletPageState extends State<WalletPage> {
     itemBuilder: (context, index) => const WalletItemSkeleton(),
   );
 
-  ListView _buildWalletList(List<WalletEntity> wallets) => ListView.separated(
+  ListView _buildWalletList(List<WalletViewEntity> wallets) => ListView.separated(
     itemCount: wallets.length,
     separatorBuilder: (context, index) => SizedBox(height: Sizes.s8),
     itemBuilder: (context, index) => WalletItem(wallet: wallets[index]),
@@ -52,7 +54,7 @@ class _WalletPageState extends State<WalletPage> {
       floatingActionButton: Padding(
         padding: EdgeInsets.only(bottom: Sizes.s62),
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => context.pushNamed(WalletFormPage.path),
           child: const Icon(Icons.add),
         ),
       ),

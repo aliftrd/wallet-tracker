@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:waltrack/domain/entity/wallet/wallet_entity.dart';
+import 'package:waltrack/domain/entity/wallet/wallet_detail_entity.dart';
+import 'package:waltrack/domain/entity/wallet/wallet_view_entity.dart';
 import 'package:waltrack/domain/repository/wallet/wallet_repository.dart';
 import 'package:waltrack/infrastructure/core/error_handler.dart';
 import 'package:waltrack/infrastructure/datasource/wallet/wallet_remote_datasource.dart';
@@ -10,11 +11,23 @@ class WalletRepositoryImpl implements WalletRepository {
   WalletRepositoryImpl(this._walletRemoteDatasource);
 
   @override
-  Future<Either<Failure, List<WalletEntity>>> fetch() async {
+  Future<Either<Failure, List<WalletViewEntity>>> fetch() async {
     final response = await _walletRemoteDatasource.fetch();
     return response.fold(
       (failure) => left(failure),
       (data) => right(data.map((e) => e.toEntity()).toList()),
     );
+  }
+
+  @override
+  Future<Either<Failure, WalletDetailEntity>> fetchById(int walletId) async {
+    // TODO: implement fetchById
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, WalletViewEntity>> submit(WalletViewEntity data) {
+    // TODO: implement submit
+    throw UnimplementedError();
   }
 }

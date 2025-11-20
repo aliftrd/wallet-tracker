@@ -8,6 +8,7 @@ import 'package:waltrack/presentation/profile_page.dart';
 import 'package:waltrack/presentation/switcher_page.dart';
 import 'package:waltrack/presentation/splash_page.dart';
 import 'package:waltrack/presentation/transaction_page.dart';
+import 'package:waltrack/presentation/wallet/form/wallet_form_page.dart';
 import 'package:waltrack/presentation/wallet/list/wallet_page.dart';
 import 'package:waltrack/presentation/welcome_page.dart';
 
@@ -66,6 +67,11 @@ class AppRouter {
               name: WalletPage.path,
               path: WalletPage.path,
               builder: (context, state) => WalletPage(),
+            ),
+            GoRoute(
+              name: WalletFormPage.path,
+              path: WalletFormPage.path,
+              builder: (context, state) => const WalletFormPage(),
             ),
           ],
         ),

@@ -9,9 +9,9 @@ import 'package:waltrack/infrastructure/datasource/wallet/wallet_remote_datasour
 
 Future<void> initDatasourceModule(GetIt locator) async {
   /// [AuthDataSource]
-  locator.registerLazySingleton<AuthLocalDatasource>(() => AuthLocalDatasource(locator()));
-  locator.registerLazySingleton<AuthRemoteDatasource>(() => AuthRemoteDatasource(locator()));
+  locator.registerLazySingleton<AuthLocalDatasource>(() => AuthLocalDatasourceImpl(locator()));
+  locator.registerLazySingleton<AuthRemoteDatasource>(() => AuthRemoteDatasourceImpl(locator()));
 
   /// [WalletDataSource]
-  locator.registerLazySingleton<WalletRemoteDatasource>(() => WalletRemoteDatasource(locator()));
+  locator.registerLazySingleton<WalletRemoteDatasource>(() => WalletRemoteDatasourceImpl(locator()));
 }

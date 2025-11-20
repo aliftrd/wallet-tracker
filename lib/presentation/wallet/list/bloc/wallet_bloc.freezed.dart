@@ -206,7 +206,7 @@ String toString() {
 /// @nodoc
 mixin _$WalletState {
 
- SubmissionStatus get status; List<WalletEntity> get wallets;
+ SubmissionStatus get status; List<WalletViewEntity> get wallets;
 /// Create a copy of WalletState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -237,7 +237,7 @@ abstract mixin class $WalletStateCopyWith<$Res>  {
   factory $WalletStateCopyWith(WalletState value, $Res Function(WalletState) _then) = _$WalletStateCopyWithImpl;
 @useResult
 $Res call({
- SubmissionStatus status, List<WalletEntity> wallets
+ SubmissionStatus status, List<WalletViewEntity> wallets
 });
 
 
@@ -258,7 +258,7 @@ class _$WalletStateCopyWithImpl<$Res>
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as SubmissionStatus,wallets: null == wallets ? _self.wallets : wallets // ignore: cast_nullable_to_non_nullable
-as List<WalletEntity>,
+as List<WalletViewEntity>,
   ));
 }
 
@@ -340,7 +340,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SubmissionStatus status,  List<WalletEntity> wallets)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SubmissionStatus status,  List<WalletViewEntity> wallets)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WalletState() when $default != null:
 return $default(_that.status,_that.wallets);case _:
@@ -361,7 +361,7 @@ return $default(_that.status,_that.wallets);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SubmissionStatus status,  List<WalletEntity> wallets)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SubmissionStatus status,  List<WalletViewEntity> wallets)  $default,) {final _that = this;
 switch (_that) {
 case _WalletState():
 return $default(_that.status,_that.wallets);}
@@ -378,7 +378,7 @@ return $default(_that.status,_that.wallets);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SubmissionStatus status,  List<WalletEntity> wallets)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SubmissionStatus status,  List<WalletViewEntity> wallets)?  $default,) {final _that = this;
 switch (_that) {
 case _WalletState() when $default != null:
 return $default(_that.status,_that.wallets);case _:
@@ -393,12 +393,12 @@ return $default(_that.status,_that.wallets);case _:
 
 
 class _WalletState extends WalletState {
-  const _WalletState({this.status = SubmissionStatus.initial, final  List<WalletEntity> wallets = const []}): _wallets = wallets,super._();
+  const _WalletState({this.status = SubmissionStatus.initial, final  List<WalletViewEntity> wallets = const []}): _wallets = wallets,super._();
   
 
 @override@JsonKey() final  SubmissionStatus status;
- final  List<WalletEntity> _wallets;
-@override@JsonKey() List<WalletEntity> get wallets {
+ final  List<WalletViewEntity> _wallets;
+@override@JsonKey() List<WalletViewEntity> get wallets {
   if (_wallets is EqualUnmodifiableListView) return _wallets;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_wallets);
@@ -435,7 +435,7 @@ abstract mixin class _$WalletStateCopyWith<$Res> implements $WalletStateCopyWith
   factory _$WalletStateCopyWith(_WalletState value, $Res Function(_WalletState) _then) = __$WalletStateCopyWithImpl;
 @override @useResult
 $Res call({
- SubmissionStatus status, List<WalletEntity> wallets
+ SubmissionStatus status, List<WalletViewEntity> wallets
 });
 
 
@@ -456,7 +456,7 @@ class __$WalletStateCopyWithImpl<$Res>
   return _then(_WalletState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as SubmissionStatus,wallets: null == wallets ? _self._wallets : wallets // ignore: cast_nullable_to_non_nullable
-as List<WalletEntity>,
+as List<WalletViewEntity>,
   ));
 }
 
