@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
-import 'package:waltrack/applications/extension/app_theme_extension.dart';
+import 'package:waltrack/applications/extension/build_context_extension.dart';
 
 class AuthAppbar extends StatelessWidget implements PreferredSizeWidget {
   const AuthAppbar({super.key});

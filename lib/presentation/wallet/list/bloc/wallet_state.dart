@@ -7,5 +7,6 @@ sealed class WalletState with _$WalletState, SubmissionStatusMixin {
   const factory WalletState({
     @Default(SubmissionStatus.initial) SubmissionStatus status,
     @Default([]) List<WalletViewEntity> wallets,
+    String? message,
   }) = _WalletState;
 }

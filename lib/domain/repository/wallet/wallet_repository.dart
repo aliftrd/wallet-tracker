@@ -8,4 +8,5 @@ abstract class WalletRepository {
   Future<Either<Failure, List<WalletViewEntity>>> fetch();
   Future<Either<Failure, WalletDetailEntity>> fetchById(int walletId);
   Future<Either<Failure, WalletViewEntity>> submit(WalletFormData formData);
+  Future<Either<Failure, void>> delete(int walletId);
 }

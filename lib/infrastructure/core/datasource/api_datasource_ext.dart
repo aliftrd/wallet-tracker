@@ -14,4 +14,5 @@ extension APIExtension on ApiClient {
   /// WALLET ENTITY
   ApiDataSource<WalletViewModel> get wallets => ApiDataSource<WalletViewModel>(this, WalletViewModel.fromJson);
   ApiDataSource<WalletDetailModel> get walletDetail => ApiDataSource<WalletDetailModel>(this, WalletDetailModel.fromJson);
+  ApiDataSource<void> get deleteWallet => ApiDataSource<void>(this, (json) => json);
 }

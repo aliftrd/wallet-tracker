@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waltrack/applications/extension/app_theme_extension.dart';
+import 'package:waltrack/applications/extension/build_context_extension.dart';
 
 class ProfilePage extends StatelessWidget {
   static const String path = '/profile';

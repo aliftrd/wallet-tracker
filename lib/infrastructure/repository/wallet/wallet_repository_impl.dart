@@ -53,4 +53,13 @@ class WalletRepositoryImpl implements WalletRepository {
       (data) => right(data.toEntity()),
     );
   }
+
+  @override
+  Future<Either<Failure, void>> delete(int walletId) async {
+    final response = await _walletRemoteDatasource.delete(walletId);
+    return response.fold(
+      (failure) => left(failure),
+      (data) => right(data),
+    );
+  }
 }

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/theme/custom_color.dart';
 import 'package:waltrack/applications/theme/custom_text_style.dart';
 
 extension BuildContextExtensions on BuildContext {
+  bool get isAndroid => Platform.isAndroid;
+  bool get isIOS => Platform.isIOS;
+
   ThemeData get theme => Theme.of(this);
 
   // Padding

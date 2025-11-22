@@ -13,6 +13,7 @@ abstract class WalletRemoteDatasource {
   Future<Either<Failure, WalletDetailModel>> fetchById(int walletId);
   Future<Either<Failure, WalletViewModel>> create(WalletFormModel formData);
   Future<Either<Failure, WalletViewModel>> update(int walletId, WalletFormModel formData);
+  Future<Either<Failure, void>> delete(int walletId);
 }
 
 /// [IMPLEMENTATION]
@@ -38,4 +39,7 @@ class WalletRemoteDatasourceImpl implements WalletRemoteDatasource {
     '${Endpoints.wallets}/$walletId',
     formData.toJson(),
   );
+
+  @override
+  Future<Either<Failure, void>> delete(int walletId) async => _apiClient.deleteWallet.delete('${Endpoints.wallets}/$walletId');
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
-import 'package:waltrack/applications/extension/app_theme_extension.dart';
+import 'package:waltrack/applications/extension/build_context_extension.dart';
 
 class CustomButtonPrimary extends StatelessWidget {
   final String text;

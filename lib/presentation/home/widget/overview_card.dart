@@ -2,7 +2,7 @@ import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:waltrack/applications/constant/assets.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
-import 'package:waltrack/applications/extension/app_theme_extension.dart';
+import 'package:waltrack/applications/extension/build_context_extension.dart';
 
 class OverviewCard extends StatelessWidget {
   final String totalBalance;

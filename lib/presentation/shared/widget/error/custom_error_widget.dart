@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waltrack/applications/constant/assets.dart';
 import 'package:waltrack/applications/constant/constants.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
-import 'package:waltrack/applications/extension/app_theme_extension.dart';
+import 'package:waltrack/applications/extension/build_context_extension.dart';
 import 'package:waltrack/applications/extension/string_extension.dart';
 
 class CustomErrorWidget extends StatelessWidget {

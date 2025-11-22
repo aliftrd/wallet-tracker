@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:waltrack/applications/constant/assets.dart';
 import 'package:waltrack/applications/constant/constants.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
-import 'package:waltrack/applications/extension/app_theme_extension.dart';
+import 'package:waltrack/applications/extension/build_context_extension.dart';
 import 'package:waltrack/applications/extension/string_extension.dart';
 
 class SwitcherPage extends StatelessWidget {
@@ -23,14 +23,12 @@ class SwitcherPage extends StatelessWidget {
     );
   }
 
-  bool get isAndroid => Platform.isAndroid;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         top: false,
-        bottom: isAndroid ? true : false,
+        bottom: context.isAndroid ? true : false,
         child: Stack(
           children: [
             navigationShell,

@@ -47,6 +47,9 @@ class Constants {
   static const String WALLET_FORM_COLOR_KEY = 'color';
   static const String WALLET_FORM_ICON_KEY = 'icon';
   static const String WALLET_SAVED_MESSAGE = 'Dompet berhasil disimpan';
+  static const String WALLET_DELETED_MESSAGE = 'Dompet berhasil dihapus';
+  static const String WALLET_DELETED_CONFIRM_TITLE = 'Hapus Dompet';
+  static const String WALLET_DELETED_CONFIRM_MESSAGE = 'Apakah anda yakin ingin menghapus dompet ini?\nTransaksi yang terkait akan ikut terhapus.';
 
   /// [Transaction]
   static const String TRANSACTION_LIST_TITLE = 'Daftar Transaksi';
@@ -61,11 +64,16 @@ class Constants {
   static const String CLICK_TO_ACTION_CANCEL = 'Batal';
   static const String CLICK_TO_ACTION_DELETE = 'Hapus';
   static const String CLICK_TO_ACTION_VIEW = 'Lihat';
+  static const String CLICK_TO_ACTION_EDIT = 'Ubah';
   static const String CLICK_TO_ACTION_SEE_MORE = 'Lihat Semua';
   static const String CLICK_TO_ACTION_CLOSE = 'Tutup';
   static const String CLICK_TO_ACTION_SEARCH = 'Cari';
   static const String CLICK_TO_ACTION_FILTER = 'Filter';
   static const String CLICK_TO_ACTION_RESET = 'Reset';
+
+  /// [Confirm Bottom Sheet]
+  static const String CONFIRM_BOTTOM_SHEET_TITLE = 'Hapus Data';
+  static const String CONFIRM_BOTTOM_SHEET_MESSAGE = 'Apakah anda yakin ingin menghapus data ini?';
 
   /// [Icon Color]
   static const String ICON_COLOR_TITLE = 'Ikon dan Warna';

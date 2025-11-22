@@ -51,6 +51,9 @@ class AppTheme {
         iconColor: _colors.primary,
         menuPadding: EdgeInsets.zero,
         position: PopupMenuPosition.under,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Sizes.s12),
+        ),
       ),
       snackBarTheme: SnackBarThemeData(
         elevation: 0,
