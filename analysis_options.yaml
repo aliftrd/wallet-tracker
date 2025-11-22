@@ -1,5 +1,9 @@
 include: package:flutter_lints/flutter.yaml
 
+bloc:
+  rules:
+    prefer_file_naming_conventions: true
+
 formatter:  
   trailing_commas: preserve
   page_width: 150

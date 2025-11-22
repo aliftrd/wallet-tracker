@@ -496,7 +496,7 @@ String toString() {
 /// @nodoc
 mixin _$WalletFormState {
 
- SubmissionStatus get status; WalletFormData get form; String? get message; Map<String, dynamic>? get errors;
+ int? get walletId; SubmissionStatus get formStatus; SubmissionStatus get walletStatus; WalletFormData get form; String? get message; Map<String, dynamic>? get errors;
 /// Create a copy of WalletFormState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -507,16 +507,16 @@ $WalletFormStateCopyWith<WalletFormState> get copyWith => _$WalletFormStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WalletFormState&&(identical(other.status, status) || other.status == status)&&(identical(other.form, form) || other.form == form)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.errors, errors));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WalletFormState&&(identical(other.walletId, walletId) || other.walletId == walletId)&&(identical(other.formStatus, formStatus) || other.formStatus == formStatus)&&(identical(other.walletStatus, walletStatus) || other.walletStatus == walletStatus)&&(identical(other.form, form) || other.form == form)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.errors, errors));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,form,message,const DeepCollectionEquality().hash(errors));
+int get hashCode => Object.hash(runtimeType,walletId,formStatus,walletStatus,form,message,const DeepCollectionEquality().hash(errors));
 
 @override
 String toString() {
-  return 'WalletFormState(status: $status, form: $form, message: $message, errors: $errors)';
+  return 'WalletFormState(walletId: $walletId, formStatus: $formStatus, walletStatus: $walletStatus, form: $form, message: $message, errors: $errors)';
 }
 
 
@@ -527,7 +527,7 @@ abstract mixin class $WalletFormStateCopyWith<$Res>  {
   factory $WalletFormStateCopyWith(WalletFormState value, $Res Function(WalletFormState) _then) = _$WalletFormStateCopyWithImpl;
 @useResult
 $Res call({
- SubmissionStatus status, WalletFormData form, String? message, Map<String, dynamic>? errors
+ int? walletId, SubmissionStatus formStatus, SubmissionStatus walletStatus, WalletFormData form, String? message, Map<String, dynamic>? errors
 });
 
 
@@ -544,9 +544,11 @@ class _$WalletFormStateCopyWithImpl<$Res>
 
 /// Create a copy of WalletFormState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? form = null,Object? message = freezed,Object? errors = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? walletId = freezed,Object? formStatus = null,Object? walletStatus = null,Object? form = null,Object? message = freezed,Object? errors = freezed,}) {
   return _then(_self.copyWith(
-status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+walletId: freezed == walletId ? _self.walletId : walletId // ignore: cast_nullable_to_non_nullable
+as int?,formStatus: null == formStatus ? _self.formStatus : formStatus // ignore: cast_nullable_to_non_nullable
+as SubmissionStatus,walletStatus: null == walletStatus ? _self.walletStatus : walletStatus // ignore: cast_nullable_to_non_nullable
 as SubmissionStatus,form: null == form ? _self.form : form // ignore: cast_nullable_to_non_nullable
 as WalletFormData,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,errors: freezed == errors ? _self.errors : errors // ignore: cast_nullable_to_non_nullable
@@ -641,10 +643,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SubmissionStatus status,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? walletId,  SubmissionStatus formStatus,  SubmissionStatus walletStatus,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WalletFormState() when $default != null:
-return $default(_that.status,_that.form,_that.message,_that.errors);case _:
+return $default(_that.walletId,_that.formStatus,_that.walletStatus,_that.form,_that.message,_that.errors);case _:
   return orElse();
 
 }
@@ -662,10 +664,10 @@ return $default(_that.status,_that.form,_that.message,_that.errors);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SubmissionStatus status,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? walletId,  SubmissionStatus formStatus,  SubmissionStatus walletStatus,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)  $default,) {final _that = this;
 switch (_that) {
 case _WalletFormState():
-return $default(_that.status,_that.form,_that.message,_that.errors);}
+return $default(_that.walletId,_that.formStatus,_that.walletStatus,_that.form,_that.message,_that.errors);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -679,10 +681,10 @@ return $default(_that.status,_that.form,_that.message,_that.errors);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SubmissionStatus status,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? walletId,  SubmissionStatus formStatus,  SubmissionStatus walletStatus,  WalletFormData form,  String? message,  Map<String, dynamic>? errors)?  $default,) {final _that = this;
 switch (_that) {
 case _WalletFormState() when $default != null:
-return $default(_that.status,_that.form,_that.message,_that.errors);case _:
+return $default(_that.walletId,_that.formStatus,_that.walletStatus,_that.form,_that.message,_that.errors);case _:
   return null;
 
 }
@@ -694,10 +696,12 @@ return $default(_that.status,_that.form,_that.message,_that.errors);case _:
 
 
 class _WalletFormState extends WalletFormState {
-  const _WalletFormState({this.status = SubmissionStatus.initial, this.form = const WalletFormData(), this.message, final  Map<String, dynamic>? errors}): _errors = errors,super._();
+  const _WalletFormState({this.walletId, this.formStatus = SubmissionStatus.initial, this.walletStatus = SubmissionStatus.initial, this.form = const WalletFormData(), this.message, final  Map<String, dynamic>? errors}): _errors = errors,super._();
   
 
-@override@JsonKey() final  SubmissionStatus status;
+@override final  int? walletId;
+@override@JsonKey() final  SubmissionStatus formStatus;
+@override@JsonKey() final  SubmissionStatus walletStatus;
 @override@JsonKey() final  WalletFormData form;
 @override final  String? message;
  final  Map<String, dynamic>? _errors;
@@ -720,16 +724,16 @@ _$WalletFormStateCopyWith<_WalletFormState> get copyWith => __$WalletFormStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WalletFormState&&(identical(other.status, status) || other.status == status)&&(identical(other.form, form) || other.form == form)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other._errors, _errors));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WalletFormState&&(identical(other.walletId, walletId) || other.walletId == walletId)&&(identical(other.formStatus, formStatus) || other.formStatus == formStatus)&&(identical(other.walletStatus, walletStatus) || other.walletStatus == walletStatus)&&(identical(other.form, form) || other.form == form)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other._errors, _errors));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,form,message,const DeepCollectionEquality().hash(_errors));
+int get hashCode => Object.hash(runtimeType,walletId,formStatus,walletStatus,form,message,const DeepCollectionEquality().hash(_errors));
 
 @override
 String toString() {
-  return 'WalletFormState(status: $status, form: $form, message: $message, errors: $errors)';
+  return 'WalletFormState(walletId: $walletId, formStatus: $formStatus, walletStatus: $walletStatus, form: $form, message: $message, errors: $errors)';
 }
 
 
@@ -740,7 +744,7 @@ abstract mixin class _$WalletFormStateCopyWith<$Res> implements $WalletFormState
   factory _$WalletFormStateCopyWith(_WalletFormState value, $Res Function(_WalletFormState) _then) = __$WalletFormStateCopyWithImpl;
 @override @useResult
 $Res call({
- SubmissionStatus status, WalletFormData form, String? message, Map<String, dynamic>? errors
+ int? walletId, SubmissionStatus formStatus, SubmissionStatus walletStatus, WalletFormData form, String? message, Map<String, dynamic>? errors
 });
 
 
@@ -757,9 +761,11 @@ class __$WalletFormStateCopyWithImpl<$Res>
 
 /// Create a copy of WalletFormState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? form = null,Object? message = freezed,Object? errors = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? walletId = freezed,Object? formStatus = null,Object? walletStatus = null,Object? form = null,Object? message = freezed,Object? errors = freezed,}) {
   return _then(_WalletFormState(
-status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+walletId: freezed == walletId ? _self.walletId : walletId // ignore: cast_nullable_to_non_nullable
+as int?,formStatus: null == formStatus ? _self.formStatus : formStatus // ignore: cast_nullable_to_non_nullable
+as SubmissionStatus,walletStatus: null == walletStatus ? _self.walletStatus : walletStatus // ignore: cast_nullable_to_non_nullable
 as SubmissionStatus,form: null == form ? _self.form : form // ignore: cast_nullable_to_non_nullable
 as WalletFormData,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,errors: freezed == errors ? _self._errors : errors // ignore: cast_nullable_to_non_nullable

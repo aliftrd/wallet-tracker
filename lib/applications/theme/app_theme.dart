@@ -21,13 +21,16 @@ class AppTheme {
         primaryContainer: _colors.containerDark,
         secondaryContainer: _colors.lightContainerDark,
         onPrimary: _colors.white,
+        error: _colors.danger,
         onError: _colors.white,
       ),
       appBarTheme: AppBarTheme(
-        backgroundColor: _colors.lightContainerDark,
+        backgroundColor: _colors.containerDark,
         elevation: 0,
         toolbarHeight: 56,
-        titleTextStyle: _textStyle.bodyL,
+        titleTextStyle: _textStyle.headingM,
+        centerTitle: true,
+        scrolledUnderElevation: 0,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: _colors.primary,
@@ -105,15 +108,6 @@ class AppTheme {
           disabledForegroundColor: _colors.containerDark,
           minimumSize: Size(double.infinity, Sizes.s50),
           textStyle: _textStyle.bodyL,
-        ),
-      ),
-      iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(
-          backgroundColor: _colors.containerDark,
-          foregroundColor: _colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
         ),
       ),
       textTheme: TextTheme(

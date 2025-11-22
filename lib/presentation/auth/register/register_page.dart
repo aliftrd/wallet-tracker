@@ -6,7 +6,7 @@ import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/extension/app_theme_extension.dart';
 import 'package:waltrack/applications/extension/string_extension.dart';
 import 'package:waltrack/presentation/shared/widget/button/custom_button_primary.dart';
-import 'package:waltrack/presentation/shared/widget/input/custom_labeled_textinput.dart';
+import 'package:waltrack/presentation/shared/widget/input/custom_labeled_text_input.dart';
 
 class RegisterPage extends StatefulWidget {
   static const String path = '/register';

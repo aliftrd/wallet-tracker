@@ -14,19 +14,19 @@ class IconColor {
 }
 
 class IconColorBottomSheet extends StatefulWidget {
-  final IconData icon;
-  final Color color;
+  final IconData? icon;
+  final Color? color;
 
   const IconColorBottomSheet({
     super.key,
-    required this.icon,
-    required this.color,
+    this.icon,
+    this.color,
   });
 
   static Future<IconColor?> show({
     required BuildContext context,
-    required IconData icon,
-    required Color color,
+    IconData? icon,
+    Color? color,
   }) async {
     return showModalBottomSheet<IconColor>(
       enableDrag: false,
@@ -50,8 +50,8 @@ class _IconColorBottomSheetState extends State<IconColorBottomSheet> {
   @override
   void initState() {
     super.initState();
-    selectedIcon = widget.icon;
-    selectedColor = widget.color;
+    selectedIcon = widget.icon ?? randomIcon;
+    selectedColor = widget.color ?? randomColor;
   }
 
   Padding _buildLabel(String label) {

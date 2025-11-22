@@ -50,12 +50,6 @@ class AppRouter {
       builder: (context, state) => const RegisterPage(),
     ),
 
-    GoRoute(
-      name: WalletFormPage.path,
-      path: WalletFormPage.path,
-      builder: (context, state) => WalletFormPage(walletId: state.extra as int?),
-    ),
-
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) => SwitcherPage(navigationShell: navigationShell),
       branches: [
@@ -105,6 +99,15 @@ class AppRouter {
           ],
         ),
       ],
+    ),
+
+    GoRoute(
+      name: WalletFormPage.path,
+      path: WalletFormPage.path,
+      builder: (context, state) {
+        final walletId = state.extra as int?;
+        return WalletFormPage(walletId: walletId);
+      },
     ),
   ];
 }

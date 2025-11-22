@@ -15,39 +15,35 @@ class Toast {
     seconds: Constants.NOTIFICATION_DURATION,
   );
 
-  static void showSuccess({
-    required BuildContext context,
+  static void showSuccess(
+    BuildContext context, {
     required String message,
   }) {
     toastification.show(
       context: context,
-      type: ToastificationType.success,
-      style: ToastificationStyle.flat,
       primaryColor: _colors.success,
-      backgroundColor: context.color.surface,
-      borderSide: BorderSide(color: _colors.success),
+      type: ToastificationType.success,
+      style: ToastificationStyle.fillColored,
       autoCloseDuration: duration,
-      title: Text(Constants.TOAST_SUCCESS_TITLE, style: context.textTheme.bodyLarge?.copyWith(color: context.blackOrWhite)),
-      description: Text(message, style: context.textTheme.bodyMedium?.copyWith(color: context.blackOrWhite)),
+      title: Text(Constants.TOAST_SUCCESS_TITLE, style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
+      description: Text(message, style: context.textTheme.bodyMedium),
       alignment: Alignment.topCenter,
       closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),
     );
   }
 
-  static void showError({
-    required BuildContext context,
+  static void showError(
+    BuildContext context, {
     required String message,
   }) {
     toastification.show(
       context: context,
-      type: ToastificationType.error,
-      style: ToastificationStyle.flat,
       primaryColor: _colors.danger,
-      backgroundColor: context.color.surface,
-      borderSide: BorderSide(color: _colors.danger),
+      type: ToastificationType.error,
+      style: ToastificationStyle.fillColored,
       autoCloseDuration: duration,
-      title: Text(Constants.TOAST_ERROR_TITLE, style: context.textTheme.bodyLarge?.copyWith(color: context.blackOrWhite)),
-      description: Text(message, style: context.textTheme.bodyMedium?.copyWith(color: context.blackOrWhite)),
+      title: Text(Constants.TOAST_ERROR_TITLE, style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
+      description: Text(message, style: context.textTheme.bodyMedium),
       alignment: Alignment.topCenter,
       closeButton: const ToastCloseButton(showType: CloseButtonShowType.none),
     );

@@ -30,12 +30,26 @@ class Constants {
   static const String SWITCHER_PROFILE_LABEL = 'Profil';
 
   /// [Home]
-  static String homeGreeting(String name) => 'Hi! $name.';
-  static const String HOME_WELCOME_MESSAGE = 'Welcome to Waltrack AI';
+  static String homeGreeting(String name) => 'Halo! $name.';
+  static const String HOME_WELCOME_MESSAGE = 'Selamat datang di Waltrack AI';
 
   /// [Wallet]
-  static const String WALLET_TITLE = 'Wallet';
-  static const String WALLET_DESCRIPTION = 'Kelola wallet anda dengan lebih mudah dan cepat.';
+  static const String WALLET_TITLE = 'Dompet';
+  static const String WALLET_DESCRIPTION = 'Kelola dompet anda dengan lebih mudah dan cepat.';
+  static const String WALLET_FORM_ADD_TITLE = 'Tambah Dompet';
+  static const String WALLET_FORM_EDIT_TITLE = 'Ubah Dompet';
+  static const String WALLET_FORM_NAME_KEY = 'name';
+  static const String WALLET_FORM_NAME_LABEL = 'Nama';
+  static const String WALLET_FORM_NAME_HINT = 'Masukkan nama';
+  static const String WALLET_FORM_BALANCE_KEY = 'balance';
+  static const String WALLET_FORM_BALANCE_LABEL = 'Saldo awal';
+  static const String WALLET_FORM_BALANCE_HINT = 'Masukkan saldo awal';
+  static const String WALLET_FORM_COLOR_KEY = 'color';
+  static const String WALLET_FORM_ICON_KEY = 'icon';
+  static const String WALLET_SAVED_MESSAGE = 'Dompet berhasil disimpan';
+
+  /// [Transaction]
+  static const String TRANSACTION_LIST_TITLE = 'Daftar Transaksi';
 
   /// [Error]
   static const String ERROR_TITLE = 'Ups! Ada kendala nih.';
@@ -46,7 +60,6 @@ class Constants {
   static const String CLICK_TO_ACTION_SAVE = 'Simpan';
   static const String CLICK_TO_ACTION_CANCEL = 'Batal';
   static const String CLICK_TO_ACTION_DELETE = 'Hapus';
-  static const String CLICK_TO_ACTION_EDIT = 'Edit';
   static const String CLICK_TO_ACTION_VIEW = 'Lihat';
   static const String CLICK_TO_ACTION_SEE_MORE = 'Lihat Semua';
   static const String CLICK_TO_ACTION_CLOSE = 'Tutup';
@@ -56,6 +69,7 @@ class Constants {
 
   /// [Icon Color]
   static const String ICON_COLOR_TITLE = 'Ikon dan Warna';
+  static const String ICON_COLOR_PICK_HINT = 'Pilih Ikon dan Warna';
   static const String ICON_COLOR_FINANCE = 'Keuangan';
   static const String ICON_COLOR_SHOPPING = 'Belanja';
   static const String ICON_COLOR_HOME_UTILITY = 'Peralatan Rumah';

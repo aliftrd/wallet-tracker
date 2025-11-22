@@ -1,11 +1,13 @@
 part of 'wallet_form_bloc.dart';
 
 @freezed
-sealed class WalletFormState with _$WalletFormState {
+sealed class WalletFormState with _$WalletFormState, FormErrorsMixin {
   const WalletFormState._();
 
   const factory WalletFormState({
-    @Default(SubmissionStatus.initial) SubmissionStatus status,
+    int? walletId,
+    @Default(SubmissionStatus.initial) SubmissionStatus formStatus,
+    @Default(SubmissionStatus.initial) SubmissionStatus walletStatus,
     @Default(WalletFormData()) WalletFormData form,
     String? message,
     Map<String, dynamic>? errors,
@@ -23,7 +25,4 @@ sealed class WalletFormData with _$WalletFormData {
     Color? color,
     IconData? icon,
   }) = _WalletFormData;
-
-  Color get colorOrRandom => color ?? icon_colors.randomColor;
-  IconData get iconOrRandom => icon ?? icon_colors.randomIcon;
 }

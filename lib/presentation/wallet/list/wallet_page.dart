@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:waltrack/applications/constant/constants.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
-import 'package:waltrack/applications/extension/app_theme_extension.dart';
 import 'package:waltrack/applications/extension/form_state_extension.dart';
 import 'package:waltrack/domain/entity/wallet/wallet_view_entity.dart';
 import 'package:waltrack/presentation/shared/widget/error/custom_error_widget.dart';
@@ -19,59 +19,55 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> {
-  late final WalletBloc _walletBloc;
-
   @override
   void initState() {
     super.initState();
-    _walletBloc = WalletBloc();
-    _walletBloc.add(const WalletEvent.fetch());
+    context.read<WalletBloc>().add(const WalletEvent.fetch());
   }
 
   ListView _buildSkeletonList() => ListView.separated(
+    padding: EdgeInsets.symmetric(vertical: Sizes.s16),
     itemCount: 6,
     separatorBuilder: (context, index) => SizedBox(height: Sizes.s8),
     itemBuilder: (context, index) => const WalletItemSkeleton(),
   );
 
   ListView _buildWalletList(List<WalletViewEntity> wallets) => ListView.separated(
+    padding: EdgeInsets.symmetric(vertical: Sizes.s16),
     itemCount: wallets.length,
     separatorBuilder: (context, index) => SizedBox(height: Sizes.s8),
     itemBuilder: (context, index) => WalletItem(wallet: wallets[index]),
   );
 
-  Widget _buildErrorWidget(bool? isEmpty) => CustomErrorWidget.scrollable(context, isEmpty ?? false);
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Wallet', style: context.textTheme.headlineMedium),
-        centerTitle: true,
-        backgroundColor: context.color.primaryContainer,
-        scrolledUnderElevation: 0,
-      ),
-      floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: Sizes.s62),
-        child: FloatingActionButton(
-          onPressed: () => context.pushNamed(WalletFormPage.path),
-          child: const Icon(Icons.add),
+    return BlocProvider(
+      create: (context) => WalletBloc()..add(const WalletEvent.fetch()),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(Constants.WALLET_TITLE),
         ),
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async => _walletBloc.add(const WalletEvent.fetch()),
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: Sizes.s16, vertical: Sizes.s16),
-          child: BlocBuilder<WalletBloc, WalletState>(
-            bloc: _walletBloc,
-            builder: (context, state) {
-              final SubmissionStatus status = state.status;
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(bottom: Sizes.s62),
+          child: FloatingActionButton(
+            onPressed: () => context.pushNamed(WalletFormPage.path),
+            child: const Icon(Icons.add),
+          ),
+        ),
+        body: RefreshIndicator(
+          onRefresh: () async => context.read<WalletBloc>().add(const WalletEvent.fetch()),
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: Sizes.s16),
+            child: BlocBuilder<WalletBloc, WalletState>(
+              builder: (context, state) {
+                final SubmissionStatus status = state.status;
 
-              if (status.isLoading) return _buildSkeletonList();
-              if (status.isFailure || state.wallets.isEmpty) return _buildErrorWidget(state.wallets.isEmpty);
+                if (status.isLoading) return _buildSkeletonList();
+                if (status.isFailure || state.wallets.isEmpty) return CustomErrorWidget.scrollable(context, state.wallets.isEmpty);
 
-              return _buildWalletList(state.wallets);
-            },
+                return _buildWalletList(state.wallets);
+              },
+            ),
           ),
         ),
       ),

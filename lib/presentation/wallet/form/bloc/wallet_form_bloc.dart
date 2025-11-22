@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:waltrack/applications/constant/constants.dart';
 import 'package:waltrack/applications/di/application_module.dart';
-import 'package:waltrack/applications/constant/icon_colors.dart' as icon_colors;
 import 'package:waltrack/applications/extension/form_state_extension.dart';
 import 'package:waltrack/applications/extension/string_extension.dart';
 import 'package:waltrack/domain/repository/wallet/wallet_repository.dart';
@@ -23,29 +23,15 @@ class WalletFormBloc extends Bloc<WalletFormEvent, WalletFormState> {
   final WalletRepository _walletRepository = locator<WalletRepository>();
 
   Future<void> _onInitialize(_InitializeEvent event, Emitter<WalletFormState> emit) async {
-    emit(state.copyWith(status: SubmissionStatus.initial));
-
     if (event.walletId != null) {
-      emit(state.copyWith(status: SubmissionStatus.loading));
+      emit(state.copyWith(walletStatus: SubmissionStatus.loading, walletId: event.walletId));
       final result = await _walletRepository.fetchById(event.walletId!);
       result.fold(
-        (failure) => emit(
-          state.copyWith(
-            status: SubmissionStatus.failure,
-            message: failure.message,
-            errors: failure.errors,
-          ),
-        ),
+        (failure) => emit(state.copyWith(walletStatus: SubmissionStatus.failure, message: failure.message, errors: failure.errors)),
         (data) => emit(
           state.copyWith(
-            status: SubmissionStatus.success,
-            form: WalletFormData(
-              id: data.id,
-              name: data.name,
-              balance: data.balance,
-              color: data.color,
-              icon: data.icon,
-            ),
+            walletStatus: SubmissionStatus.success,
+            form: state.form.copyWith(id: data.id, name: data.name, balance: data.balance, color: data.color, icon: data.icon),
           ),
         ),
       );
@@ -57,11 +43,7 @@ class WalletFormBloc extends Bloc<WalletFormEvent, WalletFormState> {
   }
 
   Future<void> _onBalanceChanged(_BalanceChangedEvent event, Emitter<WalletFormState> emit) async {
-    if (event.balance.isEmpty) {
-      emit(state.copyWith(form: state.form.copyWith(balance: 0)));
-    } else {
-      emit(state.copyWith(form: state.form.copyWith(balance: event.balance.toNumericString())));
-    }
+    emit(state.copyWith(form: state.form.copyWith(balance: event.balance.isEmpty ? 0 : event.balance.toNumericString())));
   }
 
   Future<void> _onColorAndIconChanged(_ColorAndIconChangedEvent event, Emitter<WalletFormState> emit) async {
@@ -73,12 +55,12 @@ class WalletFormBloc extends Bloc<WalletFormEvent, WalletFormState> {
   }
 
   Future<void> _onSubmit(_SubmitEvent event, Emitter<WalletFormState> emit) async {
-    emit(state.copyWith(status: SubmissionStatus.loading, message: null, errors: {}));
+    emit(state.copyWith(formStatus: SubmissionStatus.loading, message: null, errors: {}));
 
-    // final result = await _walletRepository.submit(state.form);
-    // result.fold(
-    //   (failure) => emit(state.copyWith(status: SubmissionStatus.failure, message: failure.message, errors: failure.errors)),
-    //   (user) => emit(state.copyWith(status: SubmissionStatus.success)),
-    // );
+    final result = await _walletRepository.submit(state.form);
+    result.fold(
+      (failure) => emit(state.copyWith(formStatus: SubmissionStatus.failure, message: failure.message, errors: failure.errors)),
+      (wallet) => emit(state.copyWith(formStatus: SubmissionStatus.success, message: Constants.WALLET_SAVED_MESSAGE)),
+    );
   }
 }

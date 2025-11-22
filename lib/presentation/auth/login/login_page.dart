@@ -12,7 +12,7 @@ import 'package:waltrack/presentation/auth/login/bloc/login_form_bloc.dart';
 import 'package:waltrack/presentation/auth/register/register_page.dart';
 import 'package:waltrack/presentation/home/home_page.dart';
 import 'package:waltrack/presentation/shared/widget/button/custom_button_primary.dart';
-import 'package:waltrack/presentation/shared/widget/input/custom_labeled_textinput.dart';
+import 'package:waltrack/presentation/shared/widget/input/custom_labeled_text_input.dart';
 import 'package:waltrack/presentation/shared/widget/toast/toastification.dart';
 
 class LoginPage extends StatefulWidget {
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
               context.pushReplacement(HomePage.path);
             } else if (state.isFailure) {
               if (state.errors == null || state.errors!.isEmpty) {
-                Toast.showError(context: context, message: state.message!);
+                Toast.showError(context, message: state.message!);
               }
             }
           },
