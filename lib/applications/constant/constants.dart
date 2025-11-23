@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Constants {
   static const String HIVE_BOX = 'waltrack_hive_box';
   static const String HIVE_AUTH = 'waltrack_hive_auth';
@@ -32,6 +34,8 @@ class Constants {
   /// [Home]
   static String homeGreeting(String name) => 'Halo! $name.';
   static const String HOME_WELCOME_MESSAGE = 'Selamat datang di Waltrack AI';
+  static const String HOME_WALLET_TITLE = 'Dompet';
+  static const String HOME_RECENT_TRANSACTIONS_TITLE = 'Transaksi Terbaru';
 
   /// [Wallet]
   static const String WALLET_TITLE = 'Dompet';
@@ -53,6 +57,8 @@ class Constants {
 
   /// [Transaction]
   static const String TRANSACTION_LIST_TITLE = 'Daftar Transaksi';
+  static const String TRANSACTION_TYPE_INCOME = 'Pemasukan';
+  static const String TRANSACTION_TYPE_EXPENSE = 'Pengeluaran';
 
   /// [Error]
   static const String ERROR_TITLE = 'Ups! Ada kendala nih.';
@@ -90,4 +96,28 @@ class Constants {
 
   /// [Validation]
   static String validatorRequired(String field) => '$field harus diisi';
+}
+
+enum TransactionType {
+  income(Constants.TRANSACTION_TYPE_INCOME),
+  expense(Constants.TRANSACTION_TYPE_EXPENSE);
+
+  final String label;
+
+  Color get color => this == TransactionType.income ? Colors.green : Colors.red;
+  IconData get icon => this == TransactionType.income ? Icons.arrow_upward : Icons.arrow_downward;
+  String get sign => isIncome ? '+' : '-';
+  bool get isIncome => this == TransactionType.income;
+  bool get isExpense => this == TransactionType.expense;
+
+  const TransactionType(this.label);
+}
+
+enum CategoryType {
+  income('Pemasukan'),
+  expense('Pengeluaran');
+
+  final String label;
+
+  const CategoryType(this.label);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 extension StringExtension on String {
   Widget toSvg({
@@ -41,4 +42,11 @@ extension StringExtension on String {
   }
 
   int toNumericString() => int.parse(replaceAll(RegExp(r'[^0-9]'), ''));
+
+  String formatDate() {
+    final date = DateTime.parse(this);
+    final formatter = DateFormat('dd MMM yyyy, HH:mm');
+
+    return formatter.format(date);
+  }
 }

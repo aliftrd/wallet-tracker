@@ -6,6 +6,7 @@ import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/theme/app_theme.dart';
 import 'package:waltrack/presentation/shared/bloc/auth/auth_bloc.dart';
 import 'package:waltrack/presentation/wallet/list/bloc/wallet_bloc.dart';
+import 'package:waltrack/presentation/transaction/list/bloc/transaction_bloc.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -17,6 +18,7 @@ class MainPage extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthBloc()..add(const AuthEvent.watchAuthStatus())),
         BlocProvider(create: (context) => WalletBloc()),
+        BlocProvider(create: (context) => TransactionBloc()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

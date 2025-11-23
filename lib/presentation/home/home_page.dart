@@ -8,8 +8,7 @@ import 'package:waltrack/applications/extension/build_context_extension.dart';
 import 'package:waltrack/presentation/shared/bloc/auth/auth_bloc.dart';
 import 'package:waltrack/presentation/shared/widget/avatar.dart';
 import 'package:waltrack/presentation/home/widget/overview_card.dart';
-import 'package:waltrack/presentation/shared/widget/transaction_item.dart';
-import 'package:waltrack/presentation/transaction_page.dart';
+import 'package:waltrack/presentation/transaction/list/transaction_page.dart';
 import 'package:waltrack/presentation/wallet/list/wallet_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -192,14 +191,7 @@ class HomePage extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     separatorBuilder: (context, index) => SizedBox(height: Sizes.s8),
                     itemBuilder: (context, index) {
-                      return const TransactionItem(
-                        category: 'Shopping',
-                        wallet: 'Wallet',
-                        amount: '+IDR 5000',
-                        date: '11 Nov 2025, 13:53',
-                        color: Colors.red,
-                        icon: Icons.shopping_bag,
-                      );
+                      return const SizedBox.shrink();
                     },
                   ),
                 ],
