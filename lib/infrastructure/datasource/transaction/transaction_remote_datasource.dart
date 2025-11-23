@@ -8,7 +8,7 @@ import 'package:waltrack/infrastructure/model/transaction/transaction_view_model
 
 /// [INTERFACE]
 abstract class TransactionRemoteDatasource {
-  Future<Either<Failure, BasePagination<TransactionViewModel>>> fetch({Map<String, dynamic>? queryParams});
+  Future<Either<Failure, BasePagination<TransactionViewModel>>> fetch({int? page, String? type});
   Future<Either<Failure, TransactionViewModel>> fetchById(int id);
 }
 
@@ -19,7 +19,12 @@ class TransactionRemoteDatasourceImpl implements TransactionRemoteDatasource {
   TransactionRemoteDatasourceImpl(this.apiClient);
 
   @override
-  Future<Either<Failure, BasePagination<TransactionViewModel>>> fetch({Map<String, dynamic>? queryParams}) async {
+  Future<Either<Failure, BasePagination<TransactionViewModel>>> fetch({int? page, String? type}) async {
+    final queryParams = {
+      'page': page,
+      'type': type,
+    };
+
     final response = await apiClient.transactions.get(Endpoints.transactions, queryParams: queryParams);
     return response.fold(
       (failure) => left(failure),

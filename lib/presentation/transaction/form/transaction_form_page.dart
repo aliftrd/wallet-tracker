@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waltrack/applications/constant/constants.dart';
 import 'package:waltrack/presentation/transaction/form/bloc/transaction_form_bloc.dart';
 
 class TransactionFormPage extends StatelessWidget {
@@ -28,6 +29,10 @@ class TransactionFormView extends StatefulWidget {
 class _TransactionFormViewState extends State<TransactionFormView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.transactionId != null ? Constants.TRANSACTION_FORM_EDIT_TITLE : Constants.TRANSACTION_FORM_ADD_TITLE),
+      ),
+    );
   }
 }

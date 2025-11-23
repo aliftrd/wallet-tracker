@@ -6,9 +6,10 @@ sealed class TransactionState with _$TransactionState, SubmissionStatusMixin {
 
   const factory TransactionState({
     @Default(SubmissionStatus.initial) SubmissionStatus status,
+    @Default(SubmissionStatus.initial) SubmissionStatus loadMoreStatus,
+    @Default(null) String? type,
     @Default([]) List<TransactionViewEntity> transactions,
-    PaginatedListLinks? links,
-    PaginatedListMeta? meta,
+    PaginationMetaEntity? meta,
     String? message,
   }) = _TransactionState;
 }

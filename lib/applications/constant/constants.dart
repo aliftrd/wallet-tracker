@@ -59,6 +59,9 @@ class Constants {
   static const String TRANSACTION_LIST_TITLE = 'Daftar Transaksi';
   static const String TRANSACTION_TYPE_INCOME = 'Pemasukan';
   static const String TRANSACTION_TYPE_EXPENSE = 'Pengeluaran';
+  static const String TRANSACTION_FORM_ADD_TITLE = 'Tambah Transaksi';
+  static const String TRANSACTION_FORM_EDIT_TITLE = 'Ubah Transaksi';
+  static const String TRANSACTION_DETAIL_TITLE = 'Detail Transaksi';
 
   /// [Error]
   static const String ERROR_TITLE = 'Ups! Ada kendala nih.';

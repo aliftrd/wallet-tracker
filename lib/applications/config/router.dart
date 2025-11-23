@@ -7,6 +7,7 @@ import 'package:waltrack/presentation/home/home_page.dart';
 import 'package:waltrack/presentation/profile_page.dart';
 import 'package:waltrack/presentation/switcher_page.dart';
 import 'package:waltrack/presentation/splash_page.dart';
+import 'package:waltrack/presentation/transaction/detail/transaction_detail_page.dart';
 import 'package:waltrack/presentation/transaction/list/transaction_page.dart';
 import 'package:waltrack/presentation/transaction/form/transaction_form_page.dart';
 import 'package:waltrack/presentation/wallet/form/wallet_form_page.dart';
@@ -117,6 +118,15 @@ class AppRouter {
       builder: (context, state) {
         final transactionId = state.extra as int?;
         return TransactionFormPage(transactionId: transactionId);
+      },
+    ),
+
+    GoRoute(
+      name: TransactionDetailPage.path,
+      path: TransactionDetailPage.path,
+      builder: (context, state) {
+        final transactionId = state.extra as int;
+        return TransactionDetailPage(transactionId: transactionId);
       },
     ),
   ];

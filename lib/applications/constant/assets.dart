@@ -18,4 +18,6 @@ class Assets {
   static const String illustrationLogin = '$imageDir/login-illustration.svg';
   static const String illustrationNotFound = '$imageDir/not-found-illustration.svg';
   static const String illustrationWarning = '$imageDir/warning-illustration.svg';
+
+  static const String lottiePiggyLoading = '$imageDir/piggy-loading.json';
 }

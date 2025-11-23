@@ -35,7 +35,7 @@ class TransactionItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  transaction.category.name,
+                  '${transaction.category.name} - ${transaction.id}',
                   style: context.textTheme.bodyMedium,
                 ),
                 Text(

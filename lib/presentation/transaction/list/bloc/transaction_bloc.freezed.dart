@@ -55,11 +55,12 @@ extension TransactionEventPatterns on TransactionEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FetchEvent value)?  fetch,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FetchEvent value)?  fetch,TResult Function( _LoadMoreEvent value)?  loadMore,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _FetchEvent() when fetch != null:
-return fetch(_that);case _:
+return fetch(_that);case _LoadMoreEvent() when loadMore != null:
+return loadMore(_that);case _:
   return orElse();
 
 }
@@ -77,11 +78,12 @@ return fetch(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FetchEvent value)  fetch,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FetchEvent value)  fetch,required TResult Function( _LoadMoreEvent value)  loadMore,}){
 final _that = this;
 switch (_that) {
 case _FetchEvent():
-return fetch(_that);case _:
+return fetch(_that);case _LoadMoreEvent():
+return loadMore(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -98,11 +100,12 @@ return fetch(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FetchEvent value)?  fetch,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FetchEvent value)?  fetch,TResult? Function( _LoadMoreEvent value)?  loadMore,}){
 final _that = this;
 switch (_that) {
 case _FetchEvent() when fetch != null:
-return fetch(_that);case _:
+return fetch(_that);case _LoadMoreEvent() when loadMore != null:
+return loadMore(_that);case _:
   return null;
 
 }
@@ -119,10 +122,11 @@ return fetch(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  fetch,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  fetch,TResult Function()?  loadMore,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FetchEvent() when fetch != null:
-return fetch();case _:
+return fetch();case _LoadMoreEvent() when loadMore != null:
+return loadMore();case _:
   return orElse();
 
 }
@@ -140,10 +144,11 @@ return fetch();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  fetch,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  fetch,required TResult Function()  loadMore,}) {final _that = this;
 switch (_that) {
 case _FetchEvent():
-return fetch();case _:
+return fetch();case _LoadMoreEvent():
+return loadMore();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +165,11 @@ return fetch();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  fetch,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  fetch,TResult? Function()?  loadMore,}) {final _that = this;
 switch (_that) {
 case _FetchEvent() when fetch != null:
-return fetch();case _:
+return fetch();case _LoadMoreEvent() when loadMore != null:
+return loadMore();case _:
   return null;
 
 }
@@ -204,9 +210,41 @@ String toString() {
 
 
 /// @nodoc
+
+
+class _LoadMoreEvent implements TransactionEvent {
+  const _LoadMoreEvent();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadMoreEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'TransactionEvent.loadMore()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
 mixin _$TransactionState {
 
- SubmissionStatus get status; List<TransactionViewEntity> get transactions; PaginatedListLinks? get links; PaginatedListMeta? get meta; String? get message;
+ SubmissionStatus get status; SubmissionStatus get loadMoreStatus; String? get type; List<TransactionViewEntity> get transactions; PaginationMetaEntity? get meta; String? get message;
 /// Create a copy of TransactionState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -217,16 +255,16 @@ $TransactionStateCopyWith<TransactionState> get copyWith => _$TransactionStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.transactions, transactions)&&(identical(other.links, links) || other.links == links)&&(identical(other.meta, meta) || other.meta == meta)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionState&&(identical(other.status, status) || other.status == status)&&(identical(other.loadMoreStatus, loadMoreStatus) || other.loadMoreStatus == loadMoreStatus)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other.transactions, transactions)&&(identical(other.meta, meta) || other.meta == meta)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(transactions),links,meta,message);
+int get hashCode => Object.hash(runtimeType,status,loadMoreStatus,type,const DeepCollectionEquality().hash(transactions),meta,message);
 
 @override
 String toString() {
-  return 'TransactionState(status: $status, transactions: $transactions, links: $links, meta: $meta, message: $message)';
+  return 'TransactionState(status: $status, loadMoreStatus: $loadMoreStatus, type: $type, transactions: $transactions, meta: $meta, message: $message)';
 }
 
 
@@ -237,7 +275,7 @@ abstract mixin class $TransactionStateCopyWith<$Res>  {
   factory $TransactionStateCopyWith(TransactionState value, $Res Function(TransactionState) _then) = _$TransactionStateCopyWithImpl;
 @useResult
 $Res call({
- SubmissionStatus status, List<TransactionViewEntity> transactions, PaginatedListLinks? links, PaginatedListMeta? meta, String? message
+ SubmissionStatus status, SubmissionStatus loadMoreStatus, String? type, List<TransactionViewEntity> transactions, PaginationMetaEntity? meta, String? message
 });
 
 
@@ -254,13 +292,14 @@ class _$TransactionStateCopyWithImpl<$Res>
 
 /// Create a copy of TransactionState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? transactions = null,Object? links = freezed,Object? meta = freezed,Object? message = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? loadMoreStatus = null,Object? type = freezed,Object? transactions = null,Object? meta = freezed,Object? message = freezed,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as SubmissionStatus,transactions: null == transactions ? _self.transactions : transactions // ignore: cast_nullable_to_non_nullable
-as List<TransactionViewEntity>,links: freezed == links ? _self.links : links // ignore: cast_nullable_to_non_nullable
-as PaginatedListLinks?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
-as PaginatedListMeta?,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as SubmissionStatus,loadMoreStatus: null == loadMoreStatus ? _self.loadMoreStatus : loadMoreStatus // ignore: cast_nullable_to_non_nullable
+as SubmissionStatus,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String?,transactions: null == transactions ? _self.transactions : transactions // ignore: cast_nullable_to_non_nullable
+as List<TransactionViewEntity>,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as PaginationMetaEntity?,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -343,10 +382,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SubmissionStatus status,  List<TransactionViewEntity> transactions,  PaginatedListLinks? links,  PaginatedListMeta? meta,  String? message)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SubmissionStatus status,  SubmissionStatus loadMoreStatus,  String? type,  List<TransactionViewEntity> transactions,  PaginationMetaEntity? meta,  String? message)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TransactionState() when $default != null:
-return $default(_that.status,_that.transactions,_that.links,_that.meta,_that.message);case _:
+return $default(_that.status,_that.loadMoreStatus,_that.type,_that.transactions,_that.meta,_that.message);case _:
   return orElse();
 
 }
@@ -364,10 +403,10 @@ return $default(_that.status,_that.transactions,_that.links,_that.meta,_that.mes
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SubmissionStatus status,  List<TransactionViewEntity> transactions,  PaginatedListLinks? links,  PaginatedListMeta? meta,  String? message)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SubmissionStatus status,  SubmissionStatus loadMoreStatus,  String? type,  List<TransactionViewEntity> transactions,  PaginationMetaEntity? meta,  String? message)  $default,) {final _that = this;
 switch (_that) {
 case _TransactionState():
-return $default(_that.status,_that.transactions,_that.links,_that.meta,_that.message);}
+return $default(_that.status,_that.loadMoreStatus,_that.type,_that.transactions,_that.meta,_that.message);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -381,10 +420,10 @@ return $default(_that.status,_that.transactions,_that.links,_that.meta,_that.mes
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SubmissionStatus status,  List<TransactionViewEntity> transactions,  PaginatedListLinks? links,  PaginatedListMeta? meta,  String? message)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SubmissionStatus status,  SubmissionStatus loadMoreStatus,  String? type,  List<TransactionViewEntity> transactions,  PaginationMetaEntity? meta,  String? message)?  $default,) {final _that = this;
 switch (_that) {
 case _TransactionState() when $default != null:
-return $default(_that.status,_that.transactions,_that.links,_that.meta,_that.message);case _:
+return $default(_that.status,_that.loadMoreStatus,_that.type,_that.transactions,_that.meta,_that.message);case _:
   return null;
 
 }
@@ -396,10 +435,12 @@ return $default(_that.status,_that.transactions,_that.links,_that.meta,_that.mes
 
 
 class _TransactionState extends TransactionState {
-  const _TransactionState({this.status = SubmissionStatus.initial, final  List<TransactionViewEntity> transactions = const [], this.links, this.meta, this.message}): _transactions = transactions,super._();
+  const _TransactionState({this.status = SubmissionStatus.initial, this.loadMoreStatus = SubmissionStatus.initial, this.type = null, final  List<TransactionViewEntity> transactions = const [], this.meta, this.message}): _transactions = transactions,super._();
   
 
 @override@JsonKey() final  SubmissionStatus status;
+@override@JsonKey() final  SubmissionStatus loadMoreStatus;
+@override@JsonKey() final  String? type;
  final  List<TransactionViewEntity> _transactions;
 @override@JsonKey() List<TransactionViewEntity> get transactions {
   if (_transactions is EqualUnmodifiableListView) return _transactions;
@@ -407,8 +448,7 @@ class _TransactionState extends TransactionState {
   return EqualUnmodifiableListView(_transactions);
 }
 
-@override final  PaginatedListLinks? links;
-@override final  PaginatedListMeta? meta;
+@override final  PaginationMetaEntity? meta;
 @override final  String? message;
 
 /// Create a copy of TransactionState
@@ -421,16 +461,16 @@ _$TransactionStateCopyWith<_TransactionState> get copyWith => __$TransactionStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._transactions, _transactions)&&(identical(other.links, links) || other.links == links)&&(identical(other.meta, meta) || other.meta == meta)&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionState&&(identical(other.status, status) || other.status == status)&&(identical(other.loadMoreStatus, loadMoreStatus) || other.loadMoreStatus == loadMoreStatus)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other._transactions, _transactions)&&(identical(other.meta, meta) || other.meta == meta)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(_transactions),links,meta,message);
+int get hashCode => Object.hash(runtimeType,status,loadMoreStatus,type,const DeepCollectionEquality().hash(_transactions),meta,message);
 
 @override
 String toString() {
-  return 'TransactionState(status: $status, transactions: $transactions, links: $links, meta: $meta, message: $message)';
+  return 'TransactionState(status: $status, loadMoreStatus: $loadMoreStatus, type: $type, transactions: $transactions, meta: $meta, message: $message)';
 }
 
 
@@ -441,7 +481,7 @@ abstract mixin class _$TransactionStateCopyWith<$Res> implements $TransactionSta
   factory _$TransactionStateCopyWith(_TransactionState value, $Res Function(_TransactionState) _then) = __$TransactionStateCopyWithImpl;
 @override @useResult
 $Res call({
- SubmissionStatus status, List<TransactionViewEntity> transactions, PaginatedListLinks? links, PaginatedListMeta? meta, String? message
+ SubmissionStatus status, SubmissionStatus loadMoreStatus, String? type, List<TransactionViewEntity> transactions, PaginationMetaEntity? meta, String? message
 });
 
 
@@ -458,13 +498,14 @@ class __$TransactionStateCopyWithImpl<$Res>
 
 /// Create a copy of TransactionState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? transactions = null,Object? links = freezed,Object? meta = freezed,Object? message = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? loadMoreStatus = null,Object? type = freezed,Object? transactions = null,Object? meta = freezed,Object? message = freezed,}) {
   return _then(_TransactionState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as SubmissionStatus,transactions: null == transactions ? _self._transactions : transactions // ignore: cast_nullable_to_non_nullable
-as List<TransactionViewEntity>,links: freezed == links ? _self.links : links // ignore: cast_nullable_to_non_nullable
-as PaginatedListLinks?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
-as PaginatedListMeta?,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as SubmissionStatus,loadMoreStatus: null == loadMoreStatus ? _self.loadMoreStatus : loadMoreStatus // ignore: cast_nullable_to_non_nullable
+as SubmissionStatus,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String?,transactions: null == transactions ? _self._transactions : transactions // ignore: cast_nullable_to_non_nullable
+as List<TransactionViewEntity>,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as PaginationMetaEntity?,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

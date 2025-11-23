@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:waltrack/applications/constant/assets.dart';
 import 'package:waltrack/applications/constant/constants.dart';
 import 'package:waltrack/applications/constant/sizes.dart';
 import 'package:waltrack/applications/extension/build_context_extension.dart';
 import 'package:waltrack/applications/extension/form_state_extension.dart';
+import 'package:waltrack/applications/extension/string_extension.dart';
+import 'package:waltrack/domain/entity/transaction/transaction_view_entity.dart';
 import 'package:waltrack/presentation/shared/widget/error/custom_error_widget.dart';
 import 'package:waltrack/presentation/shared/widget/transaction_item.dart';
 import 'package:waltrack/presentation/transaction/form/transaction_form_page.dart';
@@ -19,11 +22,50 @@ class TransactionPage extends StatefulWidget {
 }
 
 class _TransactionPageState extends State<TransactionPage> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
     context.read<TransactionBloc>().add(const TransactionEvent.fetch());
+    _scrollListener();
   }
+
+  void _scrollListener() => _scrollController.addListener(() {
+    if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+      final state = context.read<TransactionBloc>().state;
+      if (state.meta?.nextPage == null) return;
+      context.read<TransactionBloc>().add(const TransactionEvent.loadMore());
+    }
+  });
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  ListView _buildTransactionList(List<TransactionViewEntity> transactions, bool isLoadingMore) => ListView.separated(
+    padding: EdgeInsets.only(top: Sizes.s16, bottom: context.isAndroid ? Sizes.s100 : Sizes.s65),
+    itemCount: transactions.length + (isLoadingMore ? 1 : 0),
+    separatorBuilder: (context, index) {
+      if (isLoadingMore && index == transactions.length) return const SizedBox.shrink();
+      return SizedBox(height: Sizes.s8);
+    },
+    controller: _scrollController,
+    itemBuilder: (context, index) {
+      if (isLoadingMore && index == transactions.length) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: Sizes.s16),
+          child: Assets.lottiePiggyLoading.toLottie(height: Sizes.s100),
+        );
+      }
+
+      final transaction = transactions[index];
+
+      return TransactionItem(transaction: transaction);
+    },
+  );
 
   ListView _buildSkeletonList() => ListView.separated(
     padding: EdgeInsets.symmetric(vertical: Sizes.s16),
@@ -53,16 +95,7 @@ class _TransactionPageState extends State<TransactionPage> {
               if (state.isLoading) return _buildSkeletonList();
               if (state.isFailure || state.transactions.isEmpty) return CustomErrorWidget.scrollable(context, state.transactions.isEmpty);
 
-              return ListView.separated(
-                padding: EdgeInsets.only(top: Sizes.s16, bottom: context.isAndroid ? Sizes.s100 : Sizes.s65),
-                itemCount: state.transactions.length,
-                separatorBuilder: (context, index) => SizedBox(height: Sizes.s8),
-                itemBuilder: (context, index) {
-                  final transaction = state.transactions[index];
-
-                  return TransactionItem(transaction: transaction);
-                },
-              );
+              return _buildTransactionList(state.transactions, state.loadMoreStatus.isLoading);
             },
           ),
         ),

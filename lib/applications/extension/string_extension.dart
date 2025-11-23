@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
 extension StringExtension on String {
   Widget toSvg({
@@ -16,6 +17,14 @@ extension StringExtension on String {
       fit: fit ?? BoxFit.contain,
       colorFilter: color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
     );
+  }
+
+  Widget toLottie({
+    double? width,
+    double? height,
+    BoxFit? fit,
+  }) {
+    return Lottie.asset(this, width: width, height: height, fit: fit);
   }
 
   Widget toImage({
