@@ -29,20 +29,21 @@ class TransactionFormBloc extends Bloc<TransactionFormEvent, TransactionFormStat
       final result = await _transactionRepository.fetchById(event.transactionId!);
       result.fold(
         (failure) => emit(state.copyWith(status: SubmissionStatus.failure, message: failure.message, errors: failure.errors)),
-        (data) => emit(
-          state.copyWith(
-            status: SubmissionStatus.success,
-            form: state.form.copyWith(
-              id: data.id,
-              type: data.type,
-              category: data.category,
-              storeName: data.storeName,
-              note: data.note,
-              taxAmount: data.taxAmount,
-              totalAmount: data.totalAmount,
-            ),
-          ),
-        ),
+        (data) => null,
+        // emit(
+        // state.copyWith(
+        //   status: SubmissionStatus.success,
+        //   form: state.form.copyWith(
+        //     id: data.id,
+        //     type: data.type,
+        //     category: data.category,
+        //     storeName: data.storeName,
+        //     note: data.note,
+        //     taxAmount: data.taxAmount,
+        //     totalAmount: data.totalAmount,
+        //   ),
+        // ),
+        // ),
       );
     }
   }

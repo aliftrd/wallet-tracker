@@ -34,7 +34,7 @@ class _TransactionPageState extends State<TransactionPage> {
   void _scrollListener() => _scrollController.addListener(() {
     if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
       final state = context.read<TransactionBloc>().state;
-      if (state.meta?.nextPage == null) return;
+      if (state.loadMoreStatus.isLoading || state.meta?.nextPage == null) return;
       context.read<TransactionBloc>().add(const TransactionEvent.loadMore());
     }
   });
@@ -46,17 +46,18 @@ class _TransactionPageState extends State<TransactionPage> {
   }
 
   ListView _buildTransactionList(List<TransactionViewEntity> transactions, bool isLoadingMore) => ListView.separated(
-    padding: EdgeInsets.only(top: Sizes.s16, bottom: context.isAndroid ? Sizes.s100 : Sizes.s65),
+    padding: EdgeInsets.only(top: Sizes.s16, bottom: context.isAndroid ? Sizes.s100 : Sizes.s120),
     itemCount: transactions.length + (isLoadingMore ? 1 : 0),
+    controller: _scrollController,
+    physics: const BouncingScrollPhysics(),
     separatorBuilder: (context, index) {
       if (isLoadingMore && index == transactions.length) return const SizedBox.shrink();
       return SizedBox(height: Sizes.s8);
     },
-    controller: _scrollController,
     itemBuilder: (context, index) {
       if (isLoadingMore && index == transactions.length) {
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: Sizes.s16),
+          padding: EdgeInsets.only(bottom: Sizes.s100),
           child: Assets.lottiePiggyLoading.toLottie(height: Sizes.s100),
         );
       }

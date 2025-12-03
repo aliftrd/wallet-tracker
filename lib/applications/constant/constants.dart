@@ -62,6 +62,18 @@ class Constants {
   static const String TRANSACTION_FORM_ADD_TITLE = 'Tambah Transaksi';
   static const String TRANSACTION_FORM_EDIT_TITLE = 'Ubah Transaksi';
   static const String TRANSACTION_DETAIL_TITLE = 'Detail Transaksi';
+  static const String TRANSACTION_DETAIL_INFORMATION_TITLE = 'Informasi';
+  static const String TRANSACTION_DETAIL_STORE_NAME = 'Nama Toko';
+  static const String TRANSACTION_DETAIL_DATE = 'Tanggal';
+  static const String TRANSACTION_DETAIL_NOTE = 'Catatan';
+  static const String TRANSACTION_DETAIL_ITEMS = 'Items';
+  static const String TRANSACTION_DETAIL_PAYMENT_TITLE = 'Pembayaran';
+  static const String TRANSACTION_DETAIL_TAX_AMOUNT = 'Pajak';
+  static const String TRANSACTION_DETAIL_TOTAL_AMOUNT = 'Total';
+  static const String TRANSACTION_DETAIL_EMPTY_ITEMS = 'Tidak ada item yang ditemukan.';
+  static const String TRANSACTION_DELETED_MESSAGE = 'Transaksi berhasil dihapus';
+  static const String TRANSACTION_DELETED_CONFIRM_TITLE = 'Hapus Transaksi';
+  static const String TRANSACTION_DELETED_CONFIRM_MESSAGE = 'Apakah anda yakin ingin menghapus transaksi ini?';
 
   /// [Error]
   static const String ERROR_TITLE = 'Ups! Ada kendala nih.';

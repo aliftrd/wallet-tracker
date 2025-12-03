@@ -9,6 +9,7 @@ class CustomColor {
 
   Color primary = const Color(0xFFFF683D);
   Color disabled = const Color(0xFF6A6A6A);
+  Color divider = Colors.grey.shade700;
 
   // Light Palette
   Color background = const Color(0xFFE5E5E5);

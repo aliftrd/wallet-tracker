@@ -4,12 +4,14 @@ import 'package:waltrack/infrastructure/core/api_client.dart';
 import 'package:waltrack/infrastructure/core/datasource/api_datasource_ext.dart';
 import 'package:waltrack/infrastructure/core/error_handler.dart';
 import 'package:waltrack/infrastructure/core/models/base_pagination.dart';
+import 'package:waltrack/infrastructure/model/transaction/transaction_detail_model.dart';
 import 'package:waltrack/infrastructure/model/transaction/transaction_view_model.dart';
 
 /// [INTERFACE]
 abstract class TransactionRemoteDatasource {
   Future<Either<Failure, BasePagination<TransactionViewModel>>> fetch({int? page, String? type});
-  Future<Either<Failure, TransactionViewModel>> fetchById(int id);
+  Future<Either<Failure, TransactionDetailModel>> fetchById(int id);
+  Future<Either<Failure, void>> delete(int id);
 }
 
 /// [IMPLEMENTATION]
@@ -33,7 +35,8 @@ class TransactionRemoteDatasourceImpl implements TransactionRemoteDatasource {
   }
 
   @override
-  Future<Either<Failure, TransactionViewModel>> fetchById(int id) async {
-    throw UnimplementedError();
-  }
+  Future<Either<Failure, TransactionDetailModel>> fetchById(int id) async => await apiClient.transactionDetail.get('${Endpoints.transactions}/$id');
+
+  @override
+  Future<Either<Failure, void>> delete(int id) async => await apiClient.transactions.delete('${Endpoints.transactions}/$id');
 }

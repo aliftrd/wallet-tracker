@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:waltrack/domain/core/models/pagination_entity.dart';
+import 'package:waltrack/domain/entity/transaction/transaction_detail_entity.dart';
 import 'package:waltrack/domain/entity/transaction/transaction_view_entity.dart';
 import 'package:waltrack/domain/repository/transaction/transaction_repository.dart';
 import 'package:waltrack/infrastructure/core/error_handler.dart';
@@ -28,11 +29,20 @@ class TransactionRepositoryImpl implements TransactionRepository {
   }
 
   @override
-  Future<Either<Failure, TransactionViewEntity>> fetchById(int id) async {
+  Future<Either<Failure, TransactionDetailEntity>> fetchById(int id) async {
     final response = await _transactionRemoteDatasource.fetchById(id);
     return response.fold(
       (failure) => left(failure),
       (data) => right(data.toEntity()),
+    );
+  }
+
+  @override
+  Future<Either<Failure, void>> delete(int id) async {
+    final response = await _transactionRemoteDatasource.delete(id);
+    return response.fold(
+      (failure) => left(failure),
+      (data) => right(data),
     );
   }
 }

@@ -15,6 +15,7 @@ extension BuildContextExtensions on BuildContext {
 
   // Colors
   ColorScheme get color => theme.colorScheme;
+  Color get divider => CustomColor().divider;
   Color get blackOrWhite => CustomColor().blackWhite;
 
   // Text Style
